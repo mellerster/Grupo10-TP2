@@ -14,8 +14,10 @@ public class Tester {
 	}
 	
 	public void execute(){
+		System.out.println("execute");
 		for(Testeable t : list){
 			t.init();
+			t.execute();
 		}
 	}
 

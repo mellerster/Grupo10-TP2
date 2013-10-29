@@ -16,4 +16,10 @@ public abstract class Testeable {
 	protected void addTest(Test test) {
 		lista.add(test);
 	}
+	
+	public void execute(){
+		for(Test t : lista){
+			t.run();
+		}
+	}
 }

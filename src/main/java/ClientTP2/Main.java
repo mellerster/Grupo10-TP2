@@ -8,8 +8,9 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
+		System.out.println("hola");
 		Tester t = 	new Tester();
-		t.addTests(new myTests());
+		t.addTests(new MyTests());
 		t.execute();
 	}
 
