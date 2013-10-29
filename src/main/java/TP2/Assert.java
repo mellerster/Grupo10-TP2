@@ -1,15 +1,11 @@
 package TP2;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class Assert {
-	
-	static List<Reporter> lstReporter = new LinkedList<Reporter>();
+
 	public Assert() {
 	}
 
-	public static void isTrue(boolean aProbar, String testName) {	
+	public static void isTrue(boolean aProbar, String testName) {
 		Reporter r = Reporter.getReporter();
 		if (aProbar) {
 			r.addResult(new ResultOk(testName
@@ -21,16 +17,17 @@ public class Assert {
 
 	}
 
-	public static void AreEquals(Object uno, Object dos,String testName) {
+	public static void AreEquals(Object object1, Object object2, String testName) {
 		Reporter r = Reporter.getReporter();
-		if (uno.equals(dos)) {
-			r.addResult(new ResultOk(testName
-					.concat(": " + uno.toString() + " and " + dos.toString() + " are equals")));
+		if (object1.equals(object2)) {
+			r.addResult(new ResultOk(testName.concat(": " + object1.toString()
+					+ " and " + object2.toString() + " are equals")));
 		} else {
-			r.addResult(new ResultFail(testName
-					.concat(": " + uno.toString() + " and " + dos.toString() + " are not equals")));
+			r.addResult(new ResultFail(testName.concat(": "
+					+ object1.toString() + " and " + object2.toString()
+					+ " are not equals")));
 		}
 
 	}
-	
+
 }

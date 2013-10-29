@@ -29,12 +29,12 @@ public class testTP2 {
 	@Test
 	public void AssertAddSuccessfullResult(){
 		Assert.isTrue(true, "");
-		assertEquals(true, Reporter.getReporter().getResults().get(Reporter.getReporter().getResults().size()-1).successfull());
+		assertEquals(true, Reporter.getReporter().getResults().get(Reporter.getReporter().getResults().size()-1).wasSuccessfull());
 	}
 	
 	@Test
 	public void AssertAddNotSuccessfullResult(){
 		Assert.isTrue(false, "");
-		assertEquals(false, Reporter.getReporter().getResults().get(Reporter.getReporter().getResults().size()-1).successfull());
+		assertEquals(false, Reporter.getReporter().getResults().get(Reporter.getReporter().getResults().size()-1).wasSuccessfull());
 	}
 }

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Tester {
-	List<Testeable> list;
+	private List<Testeable> list;
 
 	public Tester() {
 		list = new LinkedList<Testeable>();
@@ -15,11 +15,12 @@ public class Tester {
 	}
 
 	public void execute() {
+		Reporter reporter = ReportConsole.getReporter();
 		for (Testeable t : list) {
 			t.init();
 			t.execute();
 		}
-		ReportConsole.getReporter().saveResults();
+		reporter.saveResults();
 	}
 
 }

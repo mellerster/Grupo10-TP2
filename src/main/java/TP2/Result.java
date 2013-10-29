@@ -1,32 +1,33 @@
 package TP2;
 
 public class Result {
-	String description;
-	boolean state;
+	private String description;
+	private boolean state;
+
 	protected Result() {
 		state = false;
 		description = "";
 	}
-	
-	
-	protected  Result(String description, boolean state) {
+
+	protected Result(String description, boolean state) {
 		this.description = description;
 		this.state = state;
 	}
-	
-	public boolean getState(){
+
+	public boolean getState() {
 		return state;
 	}
-	
-	public String getDescription(){
+
+	public String getDescription() {
 		return description;
 	}
-	
-	public boolean successfull(){
+
+	public boolean wasSuccessfull() {
 		return getState();
 	}
+
 	@Override
-	public String toString(){
+	public String toString() {
 		return description;
 	}
 }

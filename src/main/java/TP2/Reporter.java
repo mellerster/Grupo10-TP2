@@ -12,15 +12,15 @@ public class Reporter {
 		results = new LinkedList<Result>();
 		failures = new LinkedList<ResultFail>();
 	}
-	
-	protected Reporter(Reporter report){
+
+	protected Reporter(Reporter report) {
 		this.results = report.results;
 		this.failures = report.failures;
 	}
 
 	public void addResult(Result aResult) {
 		results.add(aResult);
-		if (!aResult.successfull()) {
+		if (!aResult.wasSuccessfull()) {
 			failures.add((ResultFail) aResult);
 		}
 	}
@@ -34,7 +34,6 @@ public class Reporter {
 	}
 
 	public void saveResults() {
-
 	}
 
 	public static Reporter getReporter() {

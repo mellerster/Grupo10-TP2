@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Testeable {
-	List<Test> lista;
+	private List<Test> lista;
 
 	public Testeable() {
 		lista = new LinkedList<Test>();
@@ -16,9 +16,9 @@ public abstract class Testeable {
 	protected void addTest(Test test) {
 		lista.add(test);
 	}
-	
-	public void execute(){
-		for(Test t : lista){
+
+	public void execute() {
+		for (Test t : lista) {
 			t.run();
 		}
 	}
