@@ -4,23 +4,43 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Reporter {
-	List<Result> results;
+	private List<Result> results;
+	private List<ResultFail> failures;
+	protected static Reporter reporter;
 
-	private Reporter() {
+	protected Reporter() {
 		results = new LinkedList<Result>();
+		failures = new LinkedList<ResultFail>();
+	}
+	
+	protected Reporter(Reporter report){
+		this.results = report.results;
+		this.failures = report.failures;
 	}
 
 	public void addResult(Result aResult) {
 		results.add(aResult);
+		if (!aResult.successfull()) {
+			failures.add((ResultFail) aResult);
+		}
 	}
 
-	List<Result> getResults() {
+	public List<Result> getResults() {
 		return results;
-	}	
-	private static Reporter r;
-	public static Reporter getReporter(){
-		if(r == null)
-			r = new Reporter();
-		return r;
+	}
+
+	public List<ResultFail> getFailures() {
+		return failures;
+	}
+
+	public void saveResults() {
+
+	}
+
+	public static Reporter getReporter() {
+		if (reporter == null) {
+			reporter = new Reporter();
+		}
+		return reporter;
 	}
 }
