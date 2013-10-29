@@ -1,10 +1,10 @@
 package TP2;
 
 
-
+/*
 public class ReportConsole extends Reporter {
 
-	public ReportConsole() {
+	private ReportConsole() {
 		// TODO Auto-generated constructor stub
 	}
 	public void run(){
@@ -15,3 +15,4 @@ public class ReportConsole extends Reporter {
 
 
 }
+*/

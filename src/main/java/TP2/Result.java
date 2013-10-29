@@ -21,4 +21,12 @@ public class Result {
 	public String getDescription(){
 		return description;
 	}
+	
+	public boolean successfull(){
+		return getState();
+	}
+	@Override
+	public String toString(){
+		return description;
+	}
 }

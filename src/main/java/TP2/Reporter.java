@@ -6,15 +6,21 @@ import java.util.List;
 public class Reporter {
 	List<Result> results;
 
-	public Reporter() {
+	private Reporter() {
 		results = new LinkedList<Result>();
 	}
 
-	void addResult(Result aResult) {
+	public void addResult(Result aResult) {
 		results.add(aResult);
 	}
 
 	List<Result> getResults() {
 		return results;
+	}	
+	private static Reporter r;
+	public static Reporter getReporter(){
+		if(r == null)
+			r = new Reporter();
+		return r;
 	}
 }

@@ -1,6 +1,6 @@
 package ClientTP2;
 
-import TP2.Tester;
+
 
 public class Main {
 
@@ -8,8 +8,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("hola");
-		Tester t = 	new Tester();
+		TP2.Tester t = 	new TP2.Tester();
 		t.addTests(new MyTests());
 		t.execute();
 	}
