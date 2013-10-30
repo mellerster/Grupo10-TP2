@@ -4,22 +4,24 @@ import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Testeable {
-	private List<Test> lista;
+	
+	private List<Test> list;
 
 	public Testeable() {
-		lista = new LinkedList<Test>();
+		list = new LinkedList<Test>();
 	}
 
 	public void init() {
-	};
+	}
 
 	protected void addTest(Test test) {
-		lista.add(test);
+		list.add(test);
 	}
 
 	public void execute() {
-		for (Test t : lista) {
+		for (Test t : list) {
 			t.run();
 		}
 	}
+	
 }

@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Reporter {
+	
 	private List<Result> results;
 	private List<ResultFail> failures;
 	protected static Reporter reporter;
@@ -18,10 +19,10 @@ public class Reporter {
 		this.failures = report.failures;
 	}
 
-	public void addResult(Result aResult) {
-		results.add(aResult);
-		if (!aResult.wasSuccessfull()) {
-			failures.add((ResultFail) aResult);
+	public void addResult(Result result) {
+		results.add(result);
+		if (!result.wasSuccessfull()) {
+			failures.add((ResultFail) result);
 		}
 	}
 
@@ -42,4 +43,5 @@ public class Reporter {
 		}
 		return reporter;
 	}
+	
 }

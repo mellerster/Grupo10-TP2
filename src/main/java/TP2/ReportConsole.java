@@ -1,6 +1,7 @@
 package TP2;
 
 public class ReportConsole extends Reporter {
+	
 	private static ReportConsole report;
 
 	private ReportConsole() {
@@ -32,7 +33,6 @@ public class ReportConsole extends Reporter {
 			report = new ReportConsole(Reporter.getReporter());
 		}
 		return report;
-
 	}
 
 }

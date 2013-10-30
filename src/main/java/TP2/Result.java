@@ -1,17 +1,18 @@
 package TP2;
 
 public class Result {
-	private String description;
+	
 	private boolean state;
+	private String description;
 
 	protected Result() {
 		state = false;
 		description = "";
 	}
 
-	protected Result(String description, boolean state) {
-		this.description = description;
+	protected Result(boolean state, String description) {
 		this.state = state;
+		this.description = description;
 	}
 
 	public boolean getState() {
@@ -30,4 +31,5 @@ public class Result {
 	public String toString() {
 		return description;
 	}
+	
 }

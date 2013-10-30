@@ -14,7 +14,6 @@ public class Assert {
 			r.addResult(new ResultFail(testName
 					.concat(": Expected true, value false")));
 		}
-
 	}
 
 	public static void AreEquals(Object object1, Object object2, String testName) {
@@ -27,7 +26,6 @@ public class Assert {
 					+ object1.toString() + " and " + object2.toString()
 					+ " are not equals")));
 		}
-
 	}
 
 }

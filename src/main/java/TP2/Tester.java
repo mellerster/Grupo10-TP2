@@ -4,14 +4,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Tester {
+	
 	private List<Testeable> list;
 
 	public Tester() {
 		list = new LinkedList<Testeable>();
 	}
 
-	public void addTests(Testeable t) {
-		list.add(t);
+	public void addTests(Testeable testeable) {
+		list.add(testeable);
 	}
 
 	public void execute() {
