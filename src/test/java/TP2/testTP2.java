@@ -7,17 +7,24 @@ import static org.junit.Assert.assertEquals;
 public class testTP2 {
 	
 	@Test
-	public void AssertReportCountTest(){
+	public void ReportCountIncreaseTest(){
 		int beforeResults = Reporter.getReporter().getResults().size();
 		Assert.isTrue(true,"");
 		assertEquals(beforeResults + 1, Reporter.getReporter().getResults().size());
 	}
 	
 	@Test
-	public void AssertReportFailCountTest(){
+	public void ReportFailCountIncreaseTest(){
 		int beforeResults = Reporter.getReporter().getFailures().size();
 		Assert.isTrue(false,"");
 		assertEquals(beforeResults + 1, Reporter.getReporter().getFailures().size());
+	}
+	
+	@Test
+	public void ReportFailCountNotIncreaseTest(){
+		int beforeResults = Reporter.getReporter().getFailures().size();
+		Assert.isTrue(true,"");
+		assertEquals(beforeResults, Reporter.getReporter().getFailures().size());
 	}
 	
 	@Test
