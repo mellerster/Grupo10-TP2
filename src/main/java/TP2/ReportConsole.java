@@ -1,5 +1,8 @@
 package TP2;
-
+/*
+	Clase ReportConsole
+	Esta clase tiene como responsabilidad, enviar los resultados de las pruebas a la consola y un comentario final si pasaron o no todos los tests
+*/
 public class ReportConsole extends Reporter {
 	
 	private static ReportConsole report;
