@@ -7,7 +7,6 @@ import TP2.ResultFail;
 import TP2.ResultOk;
 import TP2.Testeable;
 
-
 public class MyTests implements Testeable {
 
 	public void ReportCountIncreaseTest() {

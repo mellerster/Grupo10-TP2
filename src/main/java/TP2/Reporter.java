@@ -5,7 +5,7 @@ import java.util.List;
 
 /** Reporter
  * Esta clase se encarga de ir agregando los resultados para generar un reporte.
- * */
+ **/
 
 public class Reporter {
 	

@@ -7,7 +7,7 @@ package TP2;
  * se grabe el reporte se vea eso.
  * Herencia: Esta clase hereda de Result ya que simplifica para separar las pruebas 
  * exitoas de las fallidas y hacer los reportes de una manera mas sencilla.
- * */
+ **/
 
 public class ResultOk extends Result {
 
