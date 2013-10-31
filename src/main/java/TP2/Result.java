@@ -1,9 +1,9 @@
 package TP2;
 
-
 /** Result
- * Esta clase tiene el estado del resultado, exitoso o fallido, y una descripción del mismo
+ * Esta clase tiene el estado del resultado, exitoso o fallido, y una descripcion del mismo.
  * */
+
 public class Result {
 	
 	private boolean state;
