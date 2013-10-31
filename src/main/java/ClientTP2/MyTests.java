@@ -7,10 +7,8 @@ import TP2.ResultFail;
 import TP2.ResultOk;
 import TP2.Testeable;
 
-public class MyTests implements Testeable {
 
-	public MyTests() {
-	}
+public class MyTests implements Testeable {
 
 	public void ReportCountIncreaseTest() {
 		int beforeResults = Reporter.getReporter().getResults().size();

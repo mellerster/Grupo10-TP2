@@ -3,11 +3,10 @@ package TP2;
 import java.util.LinkedList;
 import java.util.List;
 
-/*
-	Clase Reporter
-	Esta clase se encarga de ir agregando los resultados para generar un reporte.
-*/
 
+/** Reporter
+ * Esta clase se encarga de ir agregando los resultados para generar un reporte.
+ * */
 public class Reporter {
 	
 	private List<Result> results;
