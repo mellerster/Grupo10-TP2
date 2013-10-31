@@ -24,6 +24,7 @@ public class Tester {
 		Reporter reporter = ReportConsole.getReporter();
 		for (Testeable t : list) {
 			t.init();
+			t.execute();
 		}
 		reporter.saveResults();
 	}

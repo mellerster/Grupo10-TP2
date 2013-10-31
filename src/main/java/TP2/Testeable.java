@@ -9,7 +9,7 @@ import java.util.List;
  **/
 
 public abstract class Testeable {
-
+	
 	private List<Test> tests;
 
 	public Testeable() {

@@ -48,4 +48,8 @@ public class Reporter {
 		return reporter;
 	}
 	
+	public static void clear(){
+		reporter = new Reporter();
+	}
+	
 }
