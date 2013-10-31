@@ -3,28 +3,9 @@ package TP2;
 import java.util.LinkedList;
 import java.util.List;
 /*
-	Clase Testeable
-	Se encarga de ir agregando los test del cliente para poder ejecutarlos uno a uno
+	Interfaz Testeable
+	Es lo que implementa el cliente para ejecutar una serie de tests, debe hacer que sus tests sean ejecutados dentro del metodo init
 */
-public abstract class Testeable {
-	
-	private List<Test> list;
-
-	public Testeable() {
-		list = new LinkedList<Test>();
-	}
-
-	public void init() {
-	}
-
-	protected void addTest(Test test) {
-		list.add(test);
-	}
-
-	public void execute() {
-		for (Test t : list) {
-			t.run();
-		}
-	}
-	
+public interface Testeable {
+	public void init();
 }

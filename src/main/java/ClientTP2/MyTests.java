@@ -5,10 +5,9 @@ import TP2.Reporter;
 import TP2.Result;
 import TP2.ResultFail;
 import TP2.ResultOk;
-import TP2.Test;
 import TP2.Testeable;
 
-public class MyTests extends Testeable {
+public class MyTests implements Testeable {
 
 	public MyTests() {
 	}
@@ -73,51 +72,15 @@ public class MyTests extends Testeable {
 	}
 	
 	public void init() {
-		super.addTest(new Test() {
-			public void run() {
-				ReportCountIncreaseTest();
-			}
-		});
-		super.addTest(new Test() {
-			public void run() {
-				ReportFailCountIncreaseTest();
-			}
-		});
-		super.addTest(new Test() {
-			public void run() {
-				ReportFailCountNotIncreaseTest();
-			}
-		});
-		super.addTest(new Test() {
-			public void run() {
-				ResultOkStateTest();
-			}
-		});
-		super.addTest(new Test() {
-			public void run() {
-				ResultFailStateTest();
-			}
-		});
-		super.addTest(new Test() {
-			public void run() {
-				AssertIsTrueSuccessfullResultTest();
-			}
-		});
-		super.addTest(new Test() {
-			public void run() {
-				AssertIsTrueNotSuccessfullResultTest();
-			}
-		});
-		super.addTest(new Test() {
-			public void run() {
-				AssertEqualsSuccessfullResultTest();
-			}
-		});
-		super.addTest(new Test() {
-			public void run() {
-				AssertEqualsNotSuccessfullResultTest();
-			}
-		});
+		ReportCountIncreaseTest();
+		ReportFailCountIncreaseTest();
+		ReportFailCountNotIncreaseTest();
+		ResultOkStateTest();
+		ResultFailStateTest();
+		AssertIsTrueSuccessfullResultTest();
+		AssertIsTrueNotSuccessfullResultTest();
+		AssertEqualsSuccessfullResultTest();
+		AssertEqualsNotSuccessfullResultTest();
 	}
 	
 }
