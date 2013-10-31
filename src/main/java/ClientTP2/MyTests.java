@@ -78,10 +78,14 @@ public class MyTests extends Testeable {
 						.wasSuccessfull(),
 				"AssertEqualsNotSuccessfullResultTest");
 	}
-	public void suiteSetUp(){
+	
+	protected void suiteSetUp(){
 		Reporter.clear();
 	}
-	public void init() {
+	
+	protected void init() {
+		setName("MyTests");
+		
 		super.addTest(new Test("ReportCountIncreaseTest") {
 			public void run() {
 				ReportCountIncreaseTest();

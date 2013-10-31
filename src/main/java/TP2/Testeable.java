@@ -9,14 +9,23 @@ import java.util.List;
  **/
 
 public abstract class Testeable {
-	
+	private String name;
 	private List<Test> tests;
 
 	public Testeable() {
+		name = "";
 		tests = new LinkedList<Test>();
 	}
 
-	public abstract void init();
+	protected void setName(String name){
+		this.name = name;
+	}
+	
+	public String getName(){
+		return name;
+	}
+	
+	protected abstract void init();
 
 	public void execute() {
 		suiteSetUp();
@@ -28,19 +37,19 @@ public abstract class Testeable {
 		suiteTearDown();
 	}
 
-	public void setUp() {
+	protected void setUp() {
 	}
 
-	public void tearDown() {
+	protected void tearDown() {
 	}
 
-	public void suiteSetUp() {
+	protected void suiteSetUp() {
 	}
 
-	public void suiteTearDown() {
+	protected void suiteTearDown() {
 	}
 
-	public void addTest(Test test) {
+	protected void addTest(Test test) {
 		tests.add(test);
 	}
 
