@@ -1,6 +1,6 @@
 package TP2;
 
-public abstract class Test {
+public abstract class Test implements Testeable {
 	
 	private String name;
 	

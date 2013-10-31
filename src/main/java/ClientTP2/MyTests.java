@@ -5,10 +5,11 @@ import TP2.Reporter;
 import TP2.Result;
 import TP2.ResultFail;
 import TP2.ResultOk;
-import TP2.Testeable;
+import TP2.TestSuite;
 import TP2.Test;
+import TP2.Testeable;
 
-public class MyTests extends Testeable {
+public class MyTests extends TestSuite {
 
 	public void ReportCountIncreaseTest() {
 		int beforeResults = Reporter.getReporter().getResults().size();
@@ -78,14 +79,20 @@ public class MyTests extends Testeable {
 						.wasSuccessfull(),
 				"AssertEqualsNotSuccessfullResultTest");
 	}
-	
-	protected void suiteSetUp(){
+
+	protected void suiteSetUp() {
 		Reporter.clear();
 	}
-	
+
 	protected void init() {
 		setName("MyTests");
-		
+		super.addTest(new Testeable() {
+			public void run(){
+			}
+			public String getName(){
+				return "";
+			}
+		});
 		super.addTest(new Test("ReportCountIncreaseTest") {
 			public void run() {
 				ReportCountIncreaseTest();

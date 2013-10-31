@@ -10,21 +10,21 @@ import java.util.List;
 
 public class Tester {
 	
-	private List<Testeable> list;
+	private List<TestSuite> list;
 
 	public Tester() {
-		list = new LinkedList<Testeable>();
+		list = new LinkedList<TestSuite>();
 	}
 
-	public void addTests(Testeable testeable) {
+	public void addTests(TestSuite testeable) {
 		list.add(testeable);
 	}
 
 	public void execute() {
 		Reporter reporter = ReportConsole.getReporter();
-		for (Testeable t : list) {
+		for (TestSuite t : list) {
 			t.init();
-			t.execute();
+			t.run();
 		}
 		reporter.saveResults();
 	}
