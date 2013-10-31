@@ -1,5 +1,8 @@
 package TP2;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Clase Testeable Es lo que implementa el cliente para ejecutar una serie de
  * tests. Debe hacer que sus tests sean ejecutados dentro del metodo init.
@@ -7,10 +10,21 @@ package TP2;
 
 public abstract class Testeable {
 
+	private List<Test> tests;
+
+	public Testeable() {
+		tests = new LinkedList<Test>();
+	}
+
 	public abstract void init();
 
 	public void execute() {
 		suiteSetUp();
+		for (Test t : tests) {
+			setUp();
+			t.run();
+			tearDown();
+		}
 		suiteTearDown();
 	}
 
@@ -24,6 +38,10 @@ public abstract class Testeable {
 	}
 
 	public void suiteTearDown() {
+	}
+
+	public void addTest(Test test) {
+		tests.add(test);
 	}
 
 }
