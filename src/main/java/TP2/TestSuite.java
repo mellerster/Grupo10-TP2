@@ -1,6 +1,5 @@
 package TP2;
 
-import java.io.NotActiveException;
 import java.util.LinkedList;
 import java.util.List;
 
