@@ -13,4 +13,9 @@ public abstract class Test implements Testeable {
 	public String getName() {
 		return name;
 	}
+	
+	public String toString() {
+		return getName();
+	}
+	
 }

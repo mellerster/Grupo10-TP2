@@ -1,5 +1,6 @@
 package TP2;
 
+import java.io.NotActiveException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,14 +18,14 @@ public abstract class TestSuite implements Testeable {
 		testeables = new LinkedList<Testeable>();
 	}
 
-	protected void setName(String name){
+	protected void setName(String name) {
 		this.name = name;
 	}
-	
-	public String getName(){
+
+	public String getName() {
 		return name;
 	}
-	
+
 	protected abstract void init();
 
 	public void run() {
@@ -49,7 +50,17 @@ public abstract class TestSuite implements Testeable {
 	protected void suiteTearDown() {
 	}
 
+	public String toString() {
+		return getName();
+	}
+
 	protected void addTest(Testeable test) {
+		for (Testeable t : testeables) {
+			if (t.getName().equals(test.getName())) {
+				throw new RuntimeException();
+
+			}
+		}
 		testeables.add(test);
 	}
 
