@@ -29,5 +29,9 @@ public class Assert {
 					+ " are not equals")));
 		}
 	}
+	
+	public static void Fail(String testName){
+		Reporter.getReporter().addResult(new ResultFail(testName.concat(": failed")));
+	}
 
 }
