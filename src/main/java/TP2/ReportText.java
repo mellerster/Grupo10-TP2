@@ -15,8 +15,9 @@ public class ReportText extends Reporter {
 	public void saveResults() {
 		FileWriter outFile;
 		try {
+			
 			String fileName = "Report"+".txt";
-			System.out.println(fileName);
+			String path = fileName;
 			outFile = new FileWriter(fileName);
 			PrintWriter out = new PrintWriter(outFile);
 
@@ -34,11 +35,12 @@ public class ReportText extends Reporter {
 				out.println(String.format("Test Fail: %0$1s %2$2s Failed",
 						failures, failures == 1 ? "Test" : "Tests"));
 			}
+			
 			out.close();
-			System.out.print("Grabado");
+			
+			System.out.println("Report saved at path:"+ path);
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.err.println(e.getMessage());
 		}
 	}
 
