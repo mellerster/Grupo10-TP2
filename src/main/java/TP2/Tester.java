@@ -38,8 +38,11 @@ public class Tester {
 			ReportConsole.getReporter().saveResults();
 			break;
 		case TextFile:
+			ReportText.getReporter().saveResults();
 			break;
-		default:
+		case AllAvailable:
+			ReportConsole.getReporter().saveResults();
+			ReportText.getReporter().saveResults();
 			break;
 		}
 	}
