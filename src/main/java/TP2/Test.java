@@ -18,4 +18,11 @@ public abstract class Test implements Testeable {
 		return getName();
 	}
 	
+	public String getPattern(){
+		return "*";
+	}
+	
+	public void setPattern(String pattern){
+	}
+	
 }

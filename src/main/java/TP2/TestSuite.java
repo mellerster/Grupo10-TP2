@@ -11,9 +11,11 @@ import java.util.List;
 public abstract class TestSuite implements Testeable {
 	private String name;
 	private List<Testeable> testeables;
-
+	private String pattern;
+	
 	public TestSuite() {
 		name = "";
+		pattern="";
 		testeables = new LinkedList<Testeable>();
 	}
 
@@ -23,6 +25,14 @@ public abstract class TestSuite implements Testeable {
 
 	public String getName() {
 		return name;
+	}
+	
+	public String getPattern(){
+		return pattern;
+	}
+	
+	public void setPattern(String pattern){
+		this.pattern = pattern;
 	}
 
 	protected abstract void init();
@@ -56,8 +66,7 @@ public abstract class TestSuite implements Testeable {
 	protected void addTest(Testeable test) {
 		for (Testeable t : testeables) {
 			if (t.getName().equals(test.getName())) {
-				throw new RuntimeException();
-
+				throw new TestAlreadyAddedException();
 			}
 		}
 		testeables.add(test);
