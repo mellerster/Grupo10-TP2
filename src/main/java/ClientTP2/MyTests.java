@@ -7,7 +7,6 @@ import TP2.ResultFail;
 import TP2.ResultOk;
 import TP2.TestSuite;
 import TP2.Test;
-import TP2.Testeable;
 
 public class MyTests extends TestSuite {
 
@@ -86,13 +85,6 @@ public class MyTests extends TestSuite {
 
 	protected void init() {
 		setName("MyTests");
-		super.addTest(new Testeable() {
-			public void run(){
-			}
-			public String getName(){
-				return "";
-			}
-		});
 		super.addTest(new Test("ReportCountIncreaseTest") {
 			public void run() {
 				ReportCountIncreaseTest();
