@@ -29,4 +29,8 @@ public abstract class Test implements Testeable {
 	public void setPattern(String pattern){
 	}
 	
+	public void addFixture(Fixture fixture){
+		
+	}
+	
 }

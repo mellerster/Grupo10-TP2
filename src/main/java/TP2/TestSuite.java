@@ -12,11 +12,12 @@ public abstract class TestSuite implements Testeable {
 	private String name;
 	private List<Testeable> testeables;
 	private String pattern;
-
+	private Fixture fixture;
 	public TestSuite() {
 		name = "";
 		pattern = "";
 		testeables = new LinkedList<Testeable>();
+		fixture = new Fixture();
 	}
 
 	public void setName(String name) {
@@ -45,6 +46,7 @@ public abstract class TestSuite implements Testeable {
 			setUp();
 			try {
 				if (isTestInPattern(t)) {
+					t.addFixture(this.fixture);
 					t.run();
 					reporter.addResult(new ResultOk(t.getName()));
 				}
@@ -59,6 +61,10 @@ public abstract class TestSuite implements Testeable {
 		// Reporter.getReporter().addSubReport(reporter);
 	}
 
+	public void addFixture(Fixture fixture){
+		this.fixture.addFixture(fixture);
+	}
+	
 	private boolean isTestInPattern(Testeable t) {
 		return true;
 	}

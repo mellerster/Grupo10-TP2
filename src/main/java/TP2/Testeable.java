@@ -6,4 +6,5 @@ public interface Testeable {
 	public String getName();
 	public void setPattern(String pattern);
 	public String getPattern();
+	public void addFixture(Fixture fixture);
 }
