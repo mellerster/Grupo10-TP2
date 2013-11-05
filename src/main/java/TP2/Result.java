@@ -6,20 +6,20 @@ package TP2;
 
 public class Result {
 	
-	private boolean state;
+	private ResultType state;
 	private String description;
 
 	protected Result() {
-		state = false;
+		state = ResultType.Error;
 		description = "";
 	}
 
-	protected Result(boolean state, String description) {
+	protected Result(ResultType state, String description) {
 		this.state = state;
 		this.description = description;
 	}
 
-	public boolean getState() {
+	public ResultType getState() {
 		return state;
 	}
 
@@ -27,10 +27,9 @@ public class Result {
 		return description;
 	}
 
-	public boolean wasSuccessfull() {
-		return getState();
+	public boolean wasSuccessfull(){
+		return (state == ResultType.Ok);
 	}
-
 	@Override
 	public String toString() {
 		return description;

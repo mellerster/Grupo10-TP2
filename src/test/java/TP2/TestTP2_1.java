@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class TestTP2_1 {
 
-	@Test(expected = RuntimeException.class)
+	@Test(expected = TestAlreadyAddedException.class)
 	public void UnicityTestCase() {
 		TestSuite testeable = new TestSuite() {
 
@@ -24,5 +24,40 @@ public class TestTP2_1 {
 			}
 		});
 	}
+	
+	@Test(expected = TestAlreadyAddedException.class)
+	public void UnicityTestSuite() {
+		TestSuite testeable = new TestSuite() {
+
+			@Override
+			protected void init() {
+				setName("B");
+			}
+		};
+		Testeable test = new TP2.TestSuite() {
+			@Override
+			protected void init(){
+				setName("A");
+			}
+		};
+		testeable.addTest(test);
+		testeable.addTest(test);
+	}
+	
+	@Test
+	public void TestSetUp(){
+		/*TestSuite testeable = new TestSuite(){
+			@Override
+			protected void init(){
+				setName("A");
+			}
+			@Override
+			protected void setUp(){
+				number = 5;
+			}
+		};
+		testeable.run();*/
+	}
+	
 
 }

@@ -14,12 +14,16 @@ public abstract class Test implements Testeable {
 		return name;
 	}
 	
+	public void setName(String name){
+		this.name = name;
+	}
+	
 	public String toString() {
 		return getName();
 	}
 	
 	public String getPattern(){
-		return "*";
+		return ".*";
 	}
 	
 	public void setPattern(String pattern){

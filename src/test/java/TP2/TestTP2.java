@@ -1,20 +1,38 @@
 package TP2;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class TestTP2 {
+	TP2.TestSuite testSuite;
+
+	@Before
+	public void setUp() {
+		testSuite = new TestSuite() {
+			public void init() {
+				setName("B");
+			}
+		};
+	}
 
 	@Test
 	public void ReportCountIncreaseTest() {
 		int beforeResults = Reporter.getReporter().getResults().size();
-		Assert.isTrue(true, "");
+		TP2.Test test = new TP2.Test("A") {
+			public void run() {
+				Assert.isTrue(true, "");
+			}
+		};
+		testSuite.addTest(test);
+		testSuite.run();
+
 		assertEquals(beforeResults + 1, Reporter.getReporter().getResults()
 				.size());
 	}
 
-	@Test
+	@Test(expected = AssertFailedException.class)
 	public void ReportFailCountIncreaseTest() {
 		int beforeResults = Reporter.getReporter().getFailures().size();
 		Assert.isTrue(false, "");
@@ -25,20 +43,34 @@ public class TestTP2 {
 	@Test
 	public void ReportFailCountNotIncreaseTest() {
 		int beforeResults = Reporter.getReporter().getFailures().size();
-		Assert.isTrue(true, "");
+
+		TP2.Test test = new TP2.Test("A") {
+			public void run() {
+				Assert.isTrue(true, "");
+			}
+		};
+		testSuite.addTest(test);
+		testSuite.run();
+
 		assertEquals(beforeResults, Reporter.getReporter().getFailures().size());
 	}
 
 	@Test
 	public void ResultOkStateTest() {
 		Result result = new ResultOk("Description of result ok");
-		assertEquals(true, result.getState());
+		assertEquals(true, result.getState() == ResultType.Ok);
 	}
 
 	@Test
 	public void ResultFailStateTest() {
 		Result result = new ResultFail("Description of result fail");
-		assertEquals(false, result.getState());
+		assertEquals(true, result.getState() == ResultType.Fail);
+	}
+	
+	@Test
+	public void ResultErrorStateTest() {
+		Result result = new ResultError("Description of result error");
+		assertEquals(true, result.getState() == ResultType.Error);
 	}
 
 	@Test
@@ -51,7 +83,7 @@ public class TestTP2 {
 						.wasSuccessfull());
 	}
 
-	@Test
+	@Test(expected = AssertFailedException.class)
 	public void AssertIsTrueNotSuccessfullResultTest() {
 		Assert.isTrue(false, "");
 		assertEquals(
@@ -63,7 +95,13 @@ public class TestTP2 {
 
 	@Test
 	public void AssertEqualsSuccessfullResultTest() {
-		Assert.AreEquals(1, 1, "");
+		TP2.Test test = new TP2.Test("A") {
+			public void run() {
+				Assert.AreEquals(1, 1, "");
+			}
+		};
+		testSuite.addTest(test);
+		testSuite.run();
 		assertEquals(
 				true,
 				Reporter.getReporter().getResults()
@@ -71,7 +109,7 @@ public class TestTP2 {
 						.wasSuccessfull());
 	}
 
-	@Test
+	@Test(expected = AssertFailedException.class)
 	public void AssertEqualsNotSuccessfullResultTest() {
 		Assert.AreEquals(1, 2, "");
 		assertEquals(

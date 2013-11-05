@@ -19,19 +19,22 @@ public class ReportConsole extends Reporter {
 
 	public void saveResults() {
 		for (Result r : reporter.getResults()) {
-			if (r.wasSuccessfull()) {
+			if (r.getState() == ResultType.Ok) {
 				System.out.println(r);
 			} else {
 				System.err.println(r);
 			}
 		}
 		int failures = reporter.getFailures().size();
-		if (failures == 0) {
-			System.out.println("All Tests Succeeded");
-		} else {
-			System.err.println(String.format("Test Fail: %0$1s %2$2s Failed",
-					failures, failures == 1 ? "Test" : "Tests"));
-		}
+		int errors = reporter.getErrors().size();
+		String type = (failures == 0 && errors == 0 ? "success" : "failure");
+		System.out.println("");
+		System.out.println(type.concat(" Summary"));
+		System.out.println("=========================");
+		System.out.println("Run: " + reporter.getResults().size());
+		System.out.println("Errors: " + errors);
+		System.out.println("Failures: " + failures);
+		
 	}
 
 	public static ReportConsole getReporter() {

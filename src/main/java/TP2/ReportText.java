@@ -22,11 +22,7 @@ public class ReportText extends Reporter {
 			PrintWriter out = new PrintWriter(outFile);
 
 			for (Result r : reporter.getResults()) {
-				if (r.wasSuccessfull()) {
 					out.println(r);
-				} else {
-					out.println(r);
-				}
 			}	
 			int failures = reporter.getFailures().size();
 			if (failures == 0) {

@@ -12,26 +12,26 @@ public abstract class TestSuite implements Testeable {
 	private String name;
 	private List<Testeable> testeables;
 	private String pattern;
-	
+
 	public TestSuite() {
 		name = "";
-		pattern="";
+		pattern = "";
 		testeables = new LinkedList<Testeable>();
 	}
 
-	protected void setName(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
 	public String getName() {
 		return name;
 	}
-	
-	public String getPattern(){
+
+	public String getPattern() {
 		return pattern;
 	}
-	
-	public void setPattern(String pattern){
+
+	public void setPattern(String pattern) {
 		this.pattern = pattern;
 	}
 
@@ -39,12 +39,28 @@ public abstract class TestSuite implements Testeable {
 
 	public void run() {
 		suiteSetUp();
+		// SubReport reporter= new SubReport(this.getName());
+		Reporter reporter = Reporter.getReporter();
 		for (Testeable t : testeables) {
 			setUp();
-			t.run();
+			try {
+				if (isTestInPattern(t)) {
+					t.run();
+					reporter.addResult(new ResultOk(t.getName()));
+				}
+			} catch (AssertFailedException e) {
+				reporter.addResult(new ResultFail(t.getName()));
+			} catch (Exception e) {
+				reporter.addResult(new ResultError(t.getName()));
+			}
 			tearDown();
 		}
 		suiteTearDown();
+		// Reporter.getReporter().addSubReport(reporter);
+	}
+
+	private boolean isTestInPattern(Testeable t) {
+		return true;
 	}
 
 	protected void setUp() {
@@ -64,8 +80,9 @@ public abstract class TestSuite implements Testeable {
 	}
 
 	protected void addTest(Testeable test) {
+		String testName = test.getName();
 		for (Testeable t : testeables) {
-			if (t.getName().equals(test.getName())) {
+			if (t.getName().equals(testName)) {
 				throw new TestAlreadyAddedException();
 			}
 		}
