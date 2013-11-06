@@ -2,17 +2,13 @@ package TP2;
 
 import org.junit.Test;
 
-//import static org.junit.Assert.assertEquals;
-
 public class TestTP2_1 {
 
 	@Test(expected = TestAlreadyAddedException.class)
 	public void UnicityTestCase() {
-		TestSuite testeable = new TestSuite() {
-
+		TestSuite testeable = new TestSuite("B") {
 			@Override
 			protected void init() {
-				setName("B");
 			}
 		};
 		testeable.addTest(new TP2.Test("A") {
@@ -27,17 +23,14 @@ public class TestTP2_1 {
 	
 	@Test(expected = TestAlreadyAddedException.class)
 	public void UnicityTestSuite() {
-		TestSuite testeable = new TestSuite() {
-
+		TestSuite testeable = new TestSuite("B") {
 			@Override
 			protected void init() {
-				setName("B");
 			}
 		};
-		Testeable test = new TP2.TestSuite() {
+		Testeable test = new TestSuite("A") {
 			@Override
 			protected void init(){
-				setName("A");
 			}
 		};
 		testeable.addTest(test);
@@ -59,5 +52,23 @@ public class TestTP2_1 {
 		testeable.run();*/
 	}
 	
-
+	@Test(expected = AssertFailedException.class)
+	public void TestFailure(){
+		new TP2.Test("TestFailure") {
+			public void run() {
+			}
+		};
+		Assert.isTrue(false, "TestFailure");
+	}
+	/*	
+	@Test(expected = Exception.class)
+	public void TestError(){
+		new TP2.Test("TestError") {
+			public void run() {
+			}
+		};
+		Assert.isTrue(false, "TestError");
+	}
+	*/
+	
 }

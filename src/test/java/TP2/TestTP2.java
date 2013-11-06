@@ -10,9 +10,8 @@ public class TestTP2 {
 
 	@Before
 	public void setUp() {
-		testSuite = new TestSuite() {
+		testSuite = new TestSuite("B") {
 			public void init() {
-				setName("B");
 			}
 		};
 	}

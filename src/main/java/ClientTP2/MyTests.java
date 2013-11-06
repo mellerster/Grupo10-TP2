@@ -12,8 +12,7 @@ import TP2.TestSuite;
 import TP2.Test;
 
 public class MyTests extends TestSuite {
-
-
+	
 	public void ReportFailCountIncreaseTest() {
 		int beforeResults = Reporter.getReporter().getFailures().size();
 		try {
