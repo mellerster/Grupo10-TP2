@@ -1,17 +1,9 @@
-[Ok] --> ReportCountIncreaseTest: Expected true, value true
-[Ok] --> ReportCountIncreaseTest: 1 and 1 are equals
-[Fail] --> ReportFailCountIncreaseTest: Expected true, value false
-[Ok] --> ReportFailCountIncreaseTest: 1 and 1 are equals
-[Ok] --> ReportFailCountNotIncreaseTest: Expected true, value true
-[Ok] --> ReportFailCountNotIncreaseTest: 1 and 1 are equals
-[Ok] --> ResultOkStateTest: true and true are equals
-[Ok] --> ResultFailStateTest: false and false are equals
-[Ok] --> AssertIsTrueSuccessfullResultTest: Expected true, value true
-[Ok] --> AssertIsTrueSuccessfullResultTest: true and true are equals
-[Fail] --> AssertIsTrueNotSuccessfullResultTest: Expected true, value false
-[Ok] --> AssertIsTrueNotSuccessfullResultTest: false and false are equals
-[Ok] --> AssertEqualsSuccessfullResultTest: 1 and 1 are equals
-[Ok] --> AssertEqualsSuccessfullResultTest: true and true are equals
-[Fail] --> AssertEqualsNotSuccessfullResultTest: 1 and 2 are not equals
-[Ok] --> AssertEqualsNotSuccessfullResultTest: false and false are equals
+[Fail] ReportFailCountIncreaseTest
+[Ok] ReportFailCountNotIncreaseTest
+[Ok] ResultOkStateTest
+[Ok] ResultFailStateTest
+[Ok] AssertIsTrueSuccessfullResultTest
+[Fail] AssertIsTrueNotSuccessfullResultTest
+[Fail] AssertEqualsSuccessfullResultTest
+[Ok] AssertEqualsNotSuccessfullResultTest
 Test Fail: 3 Tests Failed

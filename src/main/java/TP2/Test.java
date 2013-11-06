@@ -26,11 +26,10 @@ public abstract class Test implements Testeable {
 		return ".*";
 	}
 	
-	public void setPattern(String pattern){
+	public void setPattern(String pattern) {
 	}
 	
-	public void addFixture(Fixture fixture){
-		
+	public void addFixture(Fixture fixture){		
 	}
 	
 }

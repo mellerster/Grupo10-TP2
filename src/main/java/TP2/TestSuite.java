@@ -3,16 +3,18 @@ package TP2;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Clase TestSuite Es lo que implementa el cliente para ejecutar una serie de
+/** TestSuite
+ * Es lo que implementa el cliente para ejecutar una serie de
  * tests. Debe hacer que sus tests sean ejecutados dentro del metodo init.
  **/
 
 public abstract class TestSuite implements Testeable {
+	
 	private String name;
 	private List<Testeable> testeables;
 	private String pattern;
 	private Fixture fixture;
+	
 	public TestSuite() {
 		name = "";
 		pattern = "";
@@ -66,7 +68,7 @@ public abstract class TestSuite implements Testeable {
 	}
 	
 	private boolean isTestInPattern(Testeable t) {
-		return true;
+		return true; // TODO 
 	}
 
 	protected void setUp() {

@@ -11,7 +11,8 @@ public class ReportConsole extends Reporter {
 	
 	private static ReportConsole report;
 
-	private ReportConsole() { }
+	private ReportConsole() {
+	}
 
 	private ReportConsole(Reporter report) {
 		super(report);
@@ -34,7 +35,6 @@ public class ReportConsole extends Reporter {
 		System.out.println("Run: " + reporter.getResults().size());
 		System.out.println("Errors: " + errors);
 		System.out.println("Failures: " + failures);
-		
 	}
 
 	public static ReportConsole getReporter() {

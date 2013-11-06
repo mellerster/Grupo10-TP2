@@ -1,7 +1,8 @@
 package TP2;
 
 /** Result
- * Esta clase tiene el estado del resultado, exitoso o fallido, y una descripcion del mismo.
+ * Esta clase tiene el estado del resultado, exitoso, fallido o con errores,
+ * y una descripcion del mismo.
  **/
 
 public class Result {
@@ -30,6 +31,7 @@ public class Result {
 	public boolean wasSuccessfull(){
 		return (state == ResultType.Ok);
 	}
+	
 	@Override
 	public String toString() {
 		return description;
