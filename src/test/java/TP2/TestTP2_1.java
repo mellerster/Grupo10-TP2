@@ -67,7 +67,7 @@ public class TestTP2_1 {
 	}
 	
 	@Test
-	public void TestFailure(){
+	public void TestCaseFailure(){
 		Reporter.clear();
 		TP2.Test testCase = new TP2.Test("withFailure") {			
 			@Override
@@ -230,6 +230,16 @@ public class TestTP2_1 {
         assertEquals("setup+test+setup+test+", cadenaResultados.toString());
     }
 
-}
 
+	@Test(expected = AssertFailedException.class)
+ 	public void TestFailure(){
+		new TP2.Test("TestFailure") {
+		public void run() {
+ 			}
+ 		};
+		Assert.Fail("TestFailure");
+	}
+
+	
+}
 
