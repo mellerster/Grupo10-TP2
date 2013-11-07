@@ -84,7 +84,29 @@ public class TestTP2_1 {
 		Assert.isTrue(false, "TestError");
 	}
 	*/
-	
+	@Test
+	public void testCaseError(){
+		Reporter.clear();
+		TP2.Test testCase = new TP2.Test("withError"){
+
+			@Override
+			public void run() {
+				throw new RuntimeException();
+			}
+			
+		};
+		TestSuite testSuite = new TestSuite("testSuite") {
+			
+			@Override
+			protected void init() {
+			}
+		};
+		testSuite.addTest(testCase);
+		testSuite.init();
+		testSuite.run();
+		assertEquals(1, Reporter.getReporter().getErrors().size());
+		
+	}
 	@Test
 	public void specialTests(){
 		Reporter.clear();
