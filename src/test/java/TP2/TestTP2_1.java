@@ -227,7 +227,7 @@ public class TestTP2_1 {
 		// Act
 		tsOutter.run();
 		
-		// Assert: Que el test case pudo ver lo seteado por el setup del suite
+		// Assert: Que el test case pudo ver lo seteado por el setup del suite interno
 		assertEquals( "innerSetup+test+", result.toString() );
 	}
 
@@ -258,15 +258,8 @@ public class TestTP2_1 {
 		// Act
 		tsOutter.run();
 		
-		// Assert: Que el test case pudo ver lo seteado por el setup del suite
+		// Assert: Que el test case pudo ver lo seteado por el setup del suite externo
 		assertEquals( "outerSetup+test+", result.toString() );
-	}
-
-
-	@Test
-	public void testSetupEnSuiteEnSuite_3(){
-		// TODO: Setup en testSuite de testSuite
-		assertTrue( false );
 	}
 
 
