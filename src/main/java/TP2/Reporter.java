@@ -14,14 +14,12 @@ public class Reporter {
 	private List<Result> results;
 	private List<ResultFail> failures;
 	private List<ResultError> errors;
-	protected List<SubReport> subReports;
 	protected static Reporter reporter;
 
 	protected Reporter() {
 		results = new LinkedList<Result>();
 		failures = new LinkedList<ResultFail>();
 		errors = new LinkedList<ResultError>();
-		subReports = new LinkedList<SubReport>();
 		name = "";
 	}
 	
@@ -33,12 +31,7 @@ public class Reporter {
 		return name;
 	}
 	
-	public void addSubReport(SubReport subReport){
-		subReport.setName(this.getName() + (this.getName().equals("") ? "" : ".")
-				+ subReport.getName());
-		subReports.add(subReport);
-		
-	}
+	
 	protected Reporter(Reporter report) {
 		this.results = report.results;
 		this.failures = report.failures;

@@ -36,20 +36,32 @@ public class TestTP2_1 {
 		testeable.addTest(test);
 		testeable.addTest(test);
 	}
-	
+	int number = 0;
+	boolean passed;
 	@Test
 	public void TestSetUp(){
-		/*TestSuite testeable = new TestSuite(){
+		passed = false;
+		TestSuite testeable = new TestSuite("A"){
 			@Override
 			protected void init(){
-				setName("A");
 			}
 			@Override
 			protected void setUp(){
 				number = 5;
 			}
 		};
-		testeable.run();*/
+		TP2.Test test = new TP2.Test("B"){
+			@Override
+			public void run() {
+				if(number == 5){
+					passed = true;
+				}
+			}
+		};
+		testeable.addTest(test);
+		testeable.init();
+		testeable.run();
+		org.junit.Assert.assertTrue(passed);
 	}
 	
 	@Test(expected = AssertFailedException.class)
