@@ -3,7 +3,6 @@ package ClientTP2;
 import TP2.Fixture;
 import TP2.TestSuite;
 
-
 public class MyProjectTests extends TestSuite {
 
 	public MyProjectTests() {

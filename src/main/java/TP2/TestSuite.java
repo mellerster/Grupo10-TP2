@@ -11,28 +11,28 @@ import java.util.List;
 public abstract class TestSuite implements Testeable {
 	
 	private String name;
-	private List<TestSuite> testSuites;
-	private List<Test> tests;
+	private String packageName;
 	private String pattern;
 	private Fixture fixture;
-	private String packageName;
+	private List<TestSuite> testSuites;
+	private List<Test> tests;
 	
 	public TestSuite() {
-		setName("");
+		setName(name);
+		packageName = "";
 		pattern = ".*";
+		fixture = new Fixture();
 		tests = new LinkedList<Test>();
 		testSuites = new LinkedList<TestSuite>();
-		fixture = new Fixture();
-		packageName = "";
 	}
 	
 	public TestSuite(String name) {
 		setName(name);
+		packageName = "";
 		pattern = ".*";
+		fixture = new Fixture();
 		testSuites = new LinkedList<TestSuite>();
 		tests = new LinkedList<Test>();
-		fixture = new Fixture();
-		packageName = "";
 	}
 
 	public void setName(String name) {
@@ -64,7 +64,6 @@ public abstract class TestSuite implements Testeable {
 			t.addFixture(getFixture());
 			t.run();
 		}
-
 		for (Test t : tests) {
 			setUp();
 			try {
@@ -77,31 +76,34 @@ public abstract class TestSuite implements Testeable {
 			} catch (Exception e) {
 				reporter.addResult(new ResultError(t.getName(),getPackageName()));
 			}
-
 			tearDown();
 		}
 		suiteTearDown();
 	}
 
-	public void addFixture(Fixture fixture){
+	public void addFixture(Fixture fixture) {
 		this.fixture.addFixture(fixture);
 	}
 	
-	public Fixture getFixture(){
-		return this.fixture;
+	public Fixture getFixture() {
+		return fixture;
 	}
 
 	private boolean isTestInPattern(Testeable t) {
 		return t.getName().matches(getPattern());
 	}
 
-	protected void setUp() { }
+	protected void setUp() {
+	}
 
-	protected void tearDown() { }
+	protected void tearDown() {
+	}
 
-	protected void suiteSetUp() { }
+	protected void suiteSetUp() {
+	}
 
-	protected void suiteTearDown() { }
+	protected void suiteTearDown() {
+	}
 
 	public String toString() {
 		return getName();
@@ -126,7 +128,7 @@ public abstract class TestSuite implements Testeable {
 		tests.add(test);
 	}
 	
-	public void setPackageName(String packageName){
+	public void setPackageName(String packageName) {
 		String dot = "";
 		if (this.packageName != ""){
 			dot = ".";
@@ -134,7 +136,7 @@ public abstract class TestSuite implements Testeable {
 		this.packageName = packageName + dot + this.packageName; 
 	}
 
-	public String getPackageName(){
+	public String getPackageName() {
 		return packageName;
 	}
 }
