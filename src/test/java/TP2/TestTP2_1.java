@@ -216,7 +216,7 @@ public class TestTP2_1 {
 		
 		TP2.TestSuite tsInner = new TP2.TestSuite(){
 			protected void init(){ }
-			protected void setUp(){ result.append( "innerSetup+" ); }
+			protected void suiteSetUp(){ result.append( "innerSetup+" ); }
 		};
 		
 		TP2.TestSuite tsOutter = new TP2.TestSuite(){ protected void init(){ } };
@@ -227,15 +227,39 @@ public class TestTP2_1 {
 		// Act
 		tsOutter.run();
 		
-		// Assert
+		// Assert: Que el test case pudo ver lo seteado por el setup del suite
 		assertEquals( "innerSetup+test+", result.toString() );
 	}
 
 
 	@Test
 	public void testSetupEnSuiteEnSuite_2(){
-		// TODO: Setup en testSuite de testSuite
-		assertTrue( false );
+		// Arrange: un testCase dentro de un testSuite que esta dentro de otro testSuite
+		final StringBuilder result = new StringBuilder("");
+		
+		TP2.Test tCase = new TP2.Test("t"){
+			public void run(){ 
+				if (result.toString().equalsIgnoreCase( "outerSetup+" )){
+					result.append( "test+" );
+				}
+			}
+		};
+		
+		TP2.TestSuite tsInner = new TP2.TestSuite(){ protected void init(){ } };
+		
+		TP2.TestSuite tsOutter = new TP2.TestSuite(){
+			protected void init(){ }
+			protected void suiteSetUp(){ result.append( "outerSetup+" ); }
+		};
+		
+		tsInner.addTest( tCase );
+		tsOutter.addTest( tsInner );
+		
+		// Act
+		tsOutter.run();
+		
+		// Assert: Que el test case pudo ver lo seteado por el setup del suite
+		assertEquals( "outerSetup+test+", result.toString() );
 	}
 
 
