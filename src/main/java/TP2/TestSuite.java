@@ -11,26 +11,36 @@ import java.util.List;
 public abstract class TestSuite implements Testeable {
 	
 	private String name;
-	private List<Testeable> testeables;
+	//private List<Testeable> testeables;
+	private List<TestSuite> testSuites;
+	private List<Test> tests;
 	private String pattern;
 	private Fixture fixture;
+	private String packageName;
 	
 	public TestSuite() {
-		this.name = "";
+		setName("");
 		pattern = "";
-		testeables = new LinkedList<Testeable>();
+		tests = new LinkedList<Test>();
+		testSuites = new LinkedList<TestSuite>();
 		fixture = new Fixture();
+		packageName = "";
 	}
 	
 	public TestSuite(String name) {
-		this.name = name;
+		setName(name);
 		pattern = "";
-		testeables = new LinkedList<Testeable>();
+		testSuites = new LinkedList<TestSuite>();
+		tests = new LinkedList<Test>();
 		fixture = new Fixture();
+		packageName = "";
 	}
 
 	public void setName(String name) {
 		this.name = name;
+		if(getPackageName() == ""){
+			setPackageName(name);;
+		}
 	}
 
 	public String getName() {
@@ -49,25 +59,28 @@ public abstract class TestSuite implements Testeable {
 
 	public void run() {
 		suiteSetUp();
-		// SubReport reporter= new SubReport(this.getName());
 		Reporter reporter = Reporter.getReporter();
-		for (Testeable t : testeables) {
+		for (TestSuite t : testSuites) {
+			t.suiteSetUp();
+			t.init();
+			t.run();
+			t.suiteTearDown();
+		}
+		for (Test t : tests) {
 			setUp();
 			try {
 				if (isTestInPattern(t)) {
-					t.addFixture(this.fixture);
 					t.run();
-					reporter.addResult(new ResultOk(t.getName()));
+					reporter.addResult(new ResultOk(t.getName(),getPackageName()));
 				}
 			} catch (AssertFailedException e) {
-				reporter.addResult(new ResultFail(t.getName()));
+				reporter.addResult(new ResultFail(t.getName(),getPackageName()));
 			} catch (Exception e) {
-				reporter.addResult(new ResultError(t.getName()));
+				reporter.addResult(new ResultError(t.getName(),getPackageName()));
 			}
 			tearDown();
 		}
 		suiteTearDown();
-		// Reporter.getReporter().addSubReport(reporter);
 	}
 
 	public void addFixture(Fixture fixture){
@@ -93,15 +106,34 @@ public abstract class TestSuite implements Testeable {
 	public String toString() {
 		return getName();
 	}
-
-	protected void addTest(Testeable test) {
-		String testName = test.getName();
-		for (Testeable t : testeables) {
-			if (t.getName().equals(testName)) {
+	
+	private void checkNameInList(String name, List<?> list){
+		for (Object t : list) {
+			if (t.toString().equals(name)) {
 				throw new TestAlreadyAddedException();
 			}
 		}
-		testeables.add(test);
 	}
-
+	
+	protected void addTest(TestSuite testSuite){
+		checkNameInList(testSuite.getName(), testSuites);
+		testSuite.setPackageName(packageName);
+		testSuites.add(testSuite);
+	}
+	
+	protected void addTest(Test test) {
+		checkNameInList(test.getName(), tests);
+		tests.add(test);
+	}
+	
+	public void setPackageName(String packageName){
+		String dot = "";
+		if(this.packageName != ""){
+			dot = ".";
+		}
+		this.packageName = packageName + dot + this.packageName; 
+	}
+	public String getPackageName(){
+		return packageName;
+	}
 }

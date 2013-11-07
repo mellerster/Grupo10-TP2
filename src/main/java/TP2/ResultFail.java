@@ -14,5 +14,8 @@ public class ResultFail extends Result {
 	public ResultFail(String description) {
 		super(ResultType.Fail, "[Fail] " + description);
 	}
-
+	
+	public ResultFail(String description, String packageName){
+		super(ResultType.Fail,"[Fail] " + description, packageName);
+	}
 }

@@ -28,7 +28,7 @@ public class TestTP2_1 {
 			protected void init() {
 			}
 		};
-		Testeable test = new TestSuite("A") {
+		TestSuite test = new TestSuite("A") {
 			@Override
 			protected void init(){
 			}

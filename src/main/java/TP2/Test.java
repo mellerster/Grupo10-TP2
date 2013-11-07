@@ -21,15 +21,4 @@ public abstract class Test implements Testeable {
 	public String toString() {
 		return getName();
 	}
-	
-	public String getPattern(){
-		return ".*";
-	}
-	
-	public void setPattern(String pattern) {
-	}
-	
-	public void addFixture(Fixture fixture){		
-	}
-	
 }

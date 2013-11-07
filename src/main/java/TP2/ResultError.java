@@ -14,4 +14,8 @@ public class ResultError extends Result {
 	public ResultError(String description){
 		super(ResultType.Error, "[Error] " + description);
 	}
+	
+	public ResultError(String description, String packageName){
+		super(ResultType.Error,"[Error] " + description, packageName);
+	}
 }

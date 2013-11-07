@@ -14,5 +14,9 @@ public class ResultOk extends Result {
 	public ResultOk(String description) {
 		super(ResultType.Ok, "[Ok] " + description);
 	}
+	
+	public ResultOk(String description, String packageName){
+		super(ResultType.Ok,"[Ok] " + description, packageName);
+	}
 
 }

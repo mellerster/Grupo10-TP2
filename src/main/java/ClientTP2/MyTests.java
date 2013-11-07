@@ -12,7 +12,9 @@ import TP2.TestSuite;
 import TP2.Test;
 
 public class MyTests extends TestSuite {
-	
+	public MyTests(){
+		super();
+	}
 	public void ReportFailCountIncreaseTest() {
 		int beforeResults = Reporter.getReporter().getFailures().size();
 		try {
@@ -96,10 +98,11 @@ public class MyTests extends TestSuite {
 	}
 
 	protected void suiteSetUp() {
-		Reporter.clear();
+		//Reporter.clear();
 	}
-
-	protected void init() {
+	
+	@Override
+	public void run() {
 		setName("MyTests");
 		super.addTest(new Test("ReportFailCountIncreaseTest") {
 			public void run() {
@@ -141,6 +144,11 @@ public class MyTests extends TestSuite {
 				AssertEqualsNotSuccessfullResultTest();
 			}
 		});
+		super.run();
+	}
+	
+	public void init(){
+		
 	}
 
 }

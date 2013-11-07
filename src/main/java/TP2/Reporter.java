@@ -1,5 +1,7 @@
 package TP2;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -54,6 +56,13 @@ public class Reporter {
 	}
 
 	public List<Result> getResults() {
+		List<Result> resultsToReturn = results;
+		Collections.sort(resultsToReturn, new Comparator<Result>() {
+	         @Override
+	         public int compare(Result r1, Result r2) {
+	             return r1.getPackageName().compareTo(r2.getPackageName());
+	         }
+	     });
 		return results;
 	}
 
