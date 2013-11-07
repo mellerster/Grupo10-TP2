@@ -62,6 +62,7 @@ public abstract class TestSuite implements Testeable {
 		for (TestSuite t : testSuites) {
 			t.init();
 			t.addFixture(getFixture());
+			t.setPattern(getPattern());
 			t.run();
 		}
 		for (Test t : tests) {

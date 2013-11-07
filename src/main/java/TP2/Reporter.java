@@ -10,33 +10,23 @@ import java.util.List;
 
 public class Reporter {
 
-	protected String name;
 	private List<Result> results;
 	private List<ResultFail> failures;
 	private List<ResultError> errors;
 	protected static Reporter reporter;
 
 	protected Reporter() {
-		name = "";
 		results = new LinkedList<Result>();
 		failures = new LinkedList<ResultFail>();
 		errors = new LinkedList<ResultError>();
 	}
 
 	protected Reporter(Reporter report) {
-		name = "";
 		this.results = report.results;
 		this.failures = report.failures;
 		this.errors = report.errors;
 	}
 
-	protected void setName(String name) {
-		this.name = name;
-	}
-
-	public String getName() {
-		return name;
-	}
 
 	public void addResult(Result result) {
 		results.add(result);
