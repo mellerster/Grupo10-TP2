@@ -62,6 +62,7 @@ public abstract class TestSuite implements Testeable {
 		Reporter reporter = Reporter.getReporter();
 		for (TestSuite t : testSuites) {
 			t.init();
+			t.addFixture(getFixture());
 			t.run();
 		}
 		for (Test t : tests) {
