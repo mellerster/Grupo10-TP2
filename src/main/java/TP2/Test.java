@@ -7,6 +7,7 @@ package TP2;
 public abstract class Test implements Testeable {
 	
 	private String name;
+	private Fixture fixture;
 	
 	public Test(String name) {
 		this.name = name;
@@ -24,6 +25,14 @@ public abstract class Test implements Testeable {
 	
 	public String toString() {
 		return getName();
+	}
+
+	public Fixture getFixture() {
+		return fixture;
+	}
+
+	public void setFixture(Fixture fixture) {
+		this.fixture = fixture;
 	}
 	
 }

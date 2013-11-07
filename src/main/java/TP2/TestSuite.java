@@ -69,6 +69,7 @@ public abstract class TestSuite implements Testeable {
 			setUp();
 			try {
 				if (isTestInPattern(t)) {
+					t.setFixture(getFixture());
 					t.run();
 					reporter.addResult(new ResultOk(t.getName(),getPackageName()));
 				}

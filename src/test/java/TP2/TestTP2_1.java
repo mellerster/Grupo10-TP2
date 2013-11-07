@@ -1,7 +1,7 @@
 package TP2;
 
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 public class TestTP2_1 {
@@ -241,7 +241,53 @@ public class TestTP2_1 {
 
 	@Test
 	public void testFixtureTest(){
-		// TODO: Acceso al fixture de un test case y testSuite
+		Reporter.clear();
+		TestSuite testSuiteA = new TestSuite("A"){
+			
+			@Override
+			protected void init() {
+			}
+			
+			public void suiteSetUp(){
+				String stringA = "setUpA";
+				getFixture().add("stringA", stringA);
+			}
+			
+			public void setUp(){
+				String stringTestCase = "stringTestCase";
+				getFixture().add("stringTestCase", stringTestCase);
+			}
+			
+		};
+		TestSuite testSuiteB = new TestSuite("B"){
+			
+			@Override
+			protected void init(){
+			}
+			
+			public void suiteSetUp(){
+				String stringB = "setUpB";
+				getFixture().add("stringB", stringB);
+			}
+			
+		};
+		testSuiteB.addTest(testSuiteA);
+		TP2.Test testCase = new TP2.Test("testCase"){
+
+			@Override
+			public void run() {
+				String stringA = (String)getFixture().get("stringA");
+				String stringB = (String)getFixture().get("stringB");
+				String stringTestCase = (String)getFixture().get("stringTestCase");
+				String allTogether = stringA.concat(stringB.concat(stringTestCase));
+				Assert.AreEquals(allTogether, "setUpAsetUpBstringTestCase" , "");
+			}
+			
+		};
+		testSuiteA.addTest(testCase);
+		testSuiteB.init();
+		testSuiteB.run();
+		assertTrue(Reporter.getReporter().getResults().get(0).wasSuccessfull());
 	}
 
 	@Test(expected = AssertFailedException.class)
