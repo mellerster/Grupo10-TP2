@@ -78,7 +78,7 @@ public class TestTP2_1 {
 	}
 
 	@Test
-	public void testCaseError() {
+	public void TestCaseError() {
 		Reporter.clear();
 		TP2.Test testError = new TP2.Test("withError") {
 			@Override
@@ -97,7 +97,7 @@ public class TestTP2_1 {
 	}
 
 	@Test
-	public void specialTests() {
+	public void SpecialTests() {
 		Reporter.clear();
 		TP2.Test testMySpecialTestCase = new TP2.Test("my special test case") {
 			@Override
@@ -181,17 +181,17 @@ public class TestTP2_1 {
 	}
 
 	@Test
-	public void testSetupTestSuite(){
+	public void SetupTestSuite() {
 		final StringBuilder result = new StringBuilder("");
-		TP2.TestSuite testSuite = new TP2.TestSuite(){
+		TP2.TestSuite testSuite = new TP2.TestSuite() {
 			protected void init(){ }
 			protected void setUp(){ result.append("setup+"); }
 			public void test1(){ result.append("test1+"); }
 			public void test2(){ result.append("test2+"); }
 			@Override
 			public void run(){
-				super.addTest( new TP2.Test("test1"){ public void run(){ test1(); } });
-				super.addTest( new TP2.Test("test2"){ public void run(){ test2(); } });
+				super.addTest( new TP2.Test("test1") { public void run(){ test1(); } });
+				super.addTest( new TP2.Test("test2") { public void run(){ test2(); } });
 				super.run();
 			}
 		};
@@ -199,95 +199,32 @@ public class TestTP2_1 {
 		assertEquals("setup+test1+setup+test2+", result.toString());
 	}
 
-
 	@Test
-	public void testSetupEnSuiteEnSuite_1(){
-		// Arrange: un testCase dentro de un testSuite que esta dentro de otro testSuite
-		final StringBuilder result = new StringBuilder("");
-		
-		TP2.Test tCase = new TP2.Test("t"){
-			public void run(){ 
-				if (result.toString().equalsIgnoreCase( "innerSetup+" )){
-					result.append( "test+" );
-				}
-			}
-		};
-		
-		TP2.TestSuite tsInner = new TP2.TestSuite(){
-			protected void init(){ }
-			protected void suiteSetUp(){ result.append( "innerSetup+" ); }
-		};
-		
-		TP2.TestSuite tsOutter = new TP2.TestSuite(){ protected void init(){ } };
-		
-		tsInner.addTest( tCase );
-		tsOutter.addTest( tsInner );
-		
-		// Act
-		tsOutter.run();
-		
-		// Assert: Que el test case pudo ver lo seteado por el setup del suite interno
-		assertEquals( "innerSetup+test+", result.toString() );
-	}
-
-
-	@Test
-	public void testSetupEnSuiteEnSuite_2(){
-		// Arrange: un testCase dentro de un testSuite que esta dentro de otro testSuite
-		final StringBuilder result = new StringBuilder("");
-		
-		TP2.Test tCase = new TP2.Test("t"){
-			public void run(){ 
-				if (result.toString().equalsIgnoreCase( "outerSetup+" )){
-					result.append( "test+" );
-				}
-			}
-		};
-		
-		TP2.TestSuite tsInner = new TP2.TestSuite(){ protected void init(){ } };
-		
-		TP2.TestSuite tsOutter = new TP2.TestSuite(){
-			protected void init(){ }
-			protected void suiteSetUp(){ result.append( "outerSetup+" ); }
-		};
-		
-		tsInner.addTest( tCase );
-		tsOutter.addTest( tsInner );
-		
-		// Act
-		tsOutter.run();
-		
-		// Assert: Que el test case pudo ver lo seteado por el setup del suite externo
-		assertEquals( "outerSetup+test+", result.toString() );
-	}
-
-
-	@Test
-	public void testSetupEnSuiteEnSuite(){
+	public void SetupInSuiteInSuite() {
 		final StringBuilder result = new StringBuilder("");
 		TP2.TestSuite testSuiteB = new TP2.TestSuite("B") {
-			protected void init(){ }
+			protected void init() { }
 			protected void suiteSetUp(){ result.append("setupB+"); }
-			public void testB(){ result.append("testB+"); }
+			public void testB() { result.append("testB+"); }
 			@Override
-			public void run(){
+			public void run() {
 				super.addTest( new TP2.Test("testB") { public void run(){ testB(); } });
 				super.run();
 			}
 		};
 		TP2.TestSuite testSuiteC = new TP2.TestSuite("C") {
-			protected void init(){ }
+			protected void init() { }
 			protected void suiteSetUp(){ result.append("setupC+"); }
-			public void testC(){ result.append("testC+"); }
+			public void testC() { result.append("testC+"); }
 			@Override
-			public void run(){
-				super.addTest( new TP2.Test("testC"){ public void run(){ testC(); } });
+			public void run() {
+				super.addTest( new TP2.Test("testC") { public void run(){ testC(); } });
 				super.run();
 			}
 		};
 		TP2.TestSuite tSuiteA = new TP2.TestSuite("A") {
-			protected void init(){ }
-			protected void suiteSetUp(){ result.append("setupA+"); }
+			protected void init() { }
+			protected void suiteSetUp() { result.append("setupA+"); }
 			@Override
 			public void run() {
 				super.run();
@@ -298,7 +235,6 @@ public class TestTP2_1 {
 		tSuiteA.run();
 		assertEquals("setupA+setupB+testB+setupC+testC+", result.toString());
 	}
-
 
 	@Test
 	public void testFixtureTest() {
