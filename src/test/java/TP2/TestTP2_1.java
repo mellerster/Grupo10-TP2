@@ -253,7 +253,35 @@ public class TestTP2_1 {
 
 
 	@Test
-	public void testSetupEnSuiteEnSuite(){
+	public void testSetupEnSuiteEnSuite_1(){
+		// Arrange: un testCase dentro de un testSuite que esta dentro de otro testSuite
+		TP2.Test tCase = new TP2.Test("t"){ public void run(){ } };
+		
+		TP2.TestSuite tsInner = new TP2.TestSuite(){
+			protected void init(){ }
+			protected void setUp(){ }
+		};
+		
+		TP2.TestSuite tsOutter = new TP2.TestSuite(){ protected void init(){ } };
+		
+		tsInner.addTest( tCase );
+		tsOutter.addTest( tsInner );
+		
+		// Act
+		tsOutter.run();
+		
+		// TODO: Setup en testSuite de testSuite
+	}
+
+
+	@Test
+	public void testSetupEnSuiteEnSuite_2(){
+		// TODO: Setup en testSuite de testSuite
+	}
+
+
+	@Test
+	public void testSetupEnSuiteEnSuite_3(){
 		// TODO: Setup en testSuite de testSuite
 	}
 
