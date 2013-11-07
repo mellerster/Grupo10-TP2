@@ -19,33 +19,7 @@ public class ReportConsole extends Reporter {
 	}
 
 	public void saveResults() {
-		String packageName = "";
-		for (Result r : reporter.getResults()) {
-			if (!packageName.equals(r.getPackageName())) {
-				packageName = r.getPackageName();
-				System.out.println();
-				System.out.println(packageName);
-				System.out.println("----------");
-				System.out.flush();
-			}
-			if (r.getState() == ResultType.Ok) {
-				System.out.println(r);
-			} else {
-				System.out.println(r);
-			}
-			
-			System.out.flush();
-		}
-		int failures = reporter.getFailures().size();
-		int errors = reporter.getErrors().size();
-		String type = (failures == 0 && errors == 0 ? "success" : "failure");
-		System.out.flush();
-		System.out.println("");
-		System.out.println(type.concat(" Summary"));
-		System.out.println("=========================");
-		System.out.println("Run: " + reporter.getResults().size());
-		System.out.println("Errors: " + errors);
-		System.out.println("Failures: " + failures);
+		System.out.print(getStringResults());
 		System.out.flush();
 	}
 
