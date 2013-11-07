@@ -3,12 +3,13 @@ package TP2;
 import java.util.LinkedList;
 import java.util.List;
 
-/** Reporter
- * Esta clase se encarga de ir agregando los resultados para generar un reporte.
+/**
+ * Reporter Esta clase se encarga de ir agregando los resultados para generar un
+ * reporte.
  **/
 
 public class Reporter {
-	
+
 	protected String name;
 	private List<Result> results;
 	private List<ResultFail> failures;
@@ -21,18 +22,18 @@ public class Reporter {
 		failures = new LinkedList<ResultFail>();
 		errors = new LinkedList<ResultError>();
 	}
-	
+
 	protected Reporter(Reporter report) {
 		name = "";
 		this.results = report.results;
 		this.failures = report.failures;
 		this.errors = report.errors;
 	}
-	
+
 	protected void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -54,41 +55,37 @@ public class Reporter {
 	public List<ResultFail> getFailures() {
 		return failures;
 	}
-	
+
 	public List<ResultError> getErrors() {
 		return errors;
 	}
-	
-	protected String getStringResults(){
+
+	private void appendLine(StringBuilder builder, String line) {
+		builder.append(line);
+		builder.append(System.getProperty("line.separator"));
+	}
+
+	protected String getStringResults() {
 		StringBuilder stringBuilder = new StringBuilder();
 		String packageName = "";
 		for (Result r : reporter.getResults()) {
 			if (!packageName.equals(r.getPackageName())) {
 				packageName = r.getPackageName();
-				stringBuilder.append(System.getProperty("line.separator"));
-				stringBuilder.append(packageName);
-				stringBuilder.append(System.getProperty("line.separator"));
-				stringBuilder.append("-------------------");
-				stringBuilder.append(System.getProperty("line.separator"));
+				appendLine(stringBuilder, "");
+				appendLine(stringBuilder, packageName);
+				appendLine(stringBuilder, "-------------------");
 			}
-				stringBuilder.append(r);
-				stringBuilder.append(System.getProperty("line.separator"));
+			appendLine(stringBuilder, r.toString());
 		}
 		int failures = reporter.getFailures().size();
 		int errors = reporter.getErrors().size();
 		String type = (failures == 0 && errors == 0 ? "success" : "failure");
-		System.out.flush();
-		stringBuilder.append(System.getProperty("line.separator"));
-		stringBuilder.append(type.concat(" Summary"));
-		stringBuilder.append(System.getProperty("line.separator"));
-		stringBuilder.append("===============");
-		stringBuilder.append(System.getProperty("line.separator"));
-		stringBuilder.append("Run: " + reporter.getResults().size());
-		stringBuilder.append(System.getProperty("line.separator"));
-		stringBuilder.append("Errors: " + errors);
-		stringBuilder.append(System.getProperty("line.separator"));
-		stringBuilder.append("Failures: " + failures);
-		stringBuilder.append(System.getProperty("line.separator"));
+		appendLine(stringBuilder, "");
+		appendLine(stringBuilder, type.concat(" Summary"));
+		appendLine(stringBuilder, "===============");
+		appendLine(stringBuilder, "Run: " + reporter.getResults().size());
+		appendLine(stringBuilder, "Errors: " + errors);
+		appendLine(stringBuilder, "Failures: " + failures);
 		return stringBuilder.toString();
 	}
 
@@ -101,9 +98,9 @@ public class Reporter {
 		}
 		return reporter;
 	}
-	
+
 	public static void clear() {
 		reporter = new Reporter();
 	}
-	
+
 }
