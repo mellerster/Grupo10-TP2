@@ -243,37 +243,29 @@ public class TestTP2_1 {
 	public void testFixtureTest(){
 		Reporter.clear();
 		TestSuite testSuiteA = new TestSuite("A"){
-			
 			@Override
 			protected void init() {
 			}
-			
 			public void suiteSetUp(){
 				String stringA = "setUpA";
 				getFixture().add("stringA", stringA);
 			}
-			
 			public void setUp(){
 				String stringTestCase = "stringTestCase";
 				getFixture().add("stringTestCase", stringTestCase);
 			}
-			
 		};
 		TestSuite testSuiteB = new TestSuite("B"){
-			
 			@Override
 			protected void init(){
 			}
-			
 			public void suiteSetUp(){
 				String stringB = "setUpB";
 				getFixture().add("stringB", stringB);
 			}
-			
 		};
 		testSuiteB.addTest(testSuiteA);
 		TP2.Test testCase = new TP2.Test("testCase"){
-
 			@Override
 			public void run() {
 				String stringA = (String)getFixture().get("stringA");
@@ -282,7 +274,6 @@ public class TestTP2_1 {
 				String allTogether = stringA.concat(stringB.concat(stringTestCase));
 				Assert.AreEquals(allTogether, "setUpAsetUpBstringTestCase" , "");
 			}
-			
 		};
 		testSuiteA.addTest(testCase);
 		testSuiteB.init();
@@ -296,6 +287,44 @@ public class TestTP2_1 {
 			public void run() { }
 		};
 		Assert.Fail("TestFailure");
+	}
+	
+	@Test
+	public void TestClearOfReporter() {
+		TP2.Test testOk = new TP2.Test("test") {
+			@Override
+			public void run() {
+				Assert.isTrue(true, "testOk");
+				Assert.Fail("testOk");
+				throw new RuntimeException();
+			}
+		};
+		TP2.Test testFail = new TP2.Test("testFail") {
+			@Override
+			public void run() {
+				Assert.Fail("testFail");
+			}
+		};
+		TP2.Test testError = new TP2.Test("testError") {
+			@Override
+			public void run() {
+				throw new RuntimeException();
+			}
+		};
+		TestSuite testSuite = new TestSuite("testSuite") {
+			@Override
+			protected void init() {
+			}
+		};
+		testSuite.addTest(testOk);
+		testSuite.addTest(testFail);
+		testSuite.addTest(testError);
+		testSuite.init();
+		testSuite.run();
+		Reporter.clear();
+		assertEquals(0, Reporter.getReporter().getResults().size());
+		assertEquals(0, Reporter.getReporter().getFailures().size());
+		assertEquals(0, Reporter.getReporter().getErrors().size());
 	}
 
 }
