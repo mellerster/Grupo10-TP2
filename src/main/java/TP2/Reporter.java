@@ -74,29 +74,21 @@ public class Reporter {
 			if (!packageName.equals(r.getPackageName())) {
 				packageName = r.getPackageName();
 				stringBuilder.append(System.getProperty("line.separator"));
-				stringBuilder.append(packageName);
-				stringBuilder.append(System.getProperty("line.separator"));
-				stringBuilder.append("----------");
-				stringBuilder.append(System.getProperty("line.separator"));
+				stringBuilder.append(packageName + "\n");
+				stringBuilder.append("-------------------" + "\n");
 			}
-				stringBuilder.append(r);
-				stringBuilder.append(System.getProperty("line.separator"));
+				stringBuilder.append(r + "\n");
 		}
 		int failures = reporter.getFailures().size();
 		int errors = reporter.getErrors().size();
 		String type = (failures == 0 && errors == 0 ? "success" : "failure");
 		System.out.flush();
 		stringBuilder.append(System.getProperty("line.separator"));
-		stringBuilder.append(type.concat(" Summary"));
-		stringBuilder.append(System.getProperty("line.separator"));
-		stringBuilder.append("=========================");
-		stringBuilder.append(System.getProperty("line.separator"));
-		stringBuilder.append("Run: " + reporter.getResults().size());
-		stringBuilder.append(System.getProperty("line.separator"));
-		stringBuilder.append("Errors: " + errors);
-		stringBuilder.append(System.getProperty("line.separator"));
-		stringBuilder.append("Failures: " + failures);
-		stringBuilder.append(System.getProperty("line.separator"));
+		stringBuilder.append(type.concat(" Summary" + "\n"));
+		stringBuilder.append("=========================" + "\n");
+		stringBuilder.append("Run: " + reporter.getResults().size() + "\n");
+		stringBuilder.append("Errors: " + errors + "\n");
+		stringBuilder.append("Failures: " + failures + "\n");
 		return stringBuilder.toString();
 	}
 
