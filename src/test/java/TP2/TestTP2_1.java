@@ -66,24 +66,27 @@ public class TestTP2_1 {
 		org.junit.Assert.assertTrue(passed);
 	}
 	
-	@Test(expected = AssertFailedException.class)
+	@Test
 	public void TestFailure(){
-		new TP2.Test("TestFailure") {
+		Reporter.clear();
+		TP2.Test testCase = new TP2.Test("withFailure") {			
+			@Override
 			public void run() {
+				Assert.isTrue(false, "withFailure");
 			}
 		};
-		Assert.isTrue(false, "TestFailure");
-	}
-	/*	
-	@Test(expected = Exception.class)
-	public void TestError(){
-		new TP2.Test("TestError") {
-			public void run() {
+		TestSuite testSuite = new TestSuite("testSuite") {
+			
+			@Override
+			protected void init() {
 			}
 		};
-		Assert.isTrue(false, "TestError");
+		testSuite.addTest(testCase);
+		testSuite.init();
+		testSuite.run();
+		assertEquals(1, Reporter.getReporter().getFailures().size());	
 	}
-	*/
+
 	@Test
 	public void testCaseError(){
 		Reporter.clear();
