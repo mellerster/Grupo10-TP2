@@ -11,7 +11,6 @@ import java.util.List;
 public abstract class TestSuite implements Testeable {
 	
 	private String name;
-	//private List<Testeable> testeables;
 	private List<TestSuite> testSuites;
 	private List<Test> tests;
 	private String pattern;
@@ -20,7 +19,7 @@ public abstract class TestSuite implements Testeable {
 	
 	public TestSuite() {
 		setName("");
-		pattern = "";
+		pattern = ".*";
 		tests = new LinkedList<Test>();
 		testSuites = new LinkedList<TestSuite>();
 		fixture = new Fixture();
@@ -29,7 +28,7 @@ public abstract class TestSuite implements Testeable {
 	
 	public TestSuite(String name) {
 		setName(name);
-		pattern = "";
+		pattern = ".*";
 		testSuites = new LinkedList<TestSuite>();
 		tests = new LinkedList<Test>();
 		fixture = new Fixture();
@@ -90,7 +89,7 @@ public abstract class TestSuite implements Testeable {
 		return this.fixture;
 	}
 	private boolean isTestInPattern(Testeable t) {
-		return true; // TODO 
+		return t.getName().matches(getPattern());
 	}
 
 	protected void setUp() {
