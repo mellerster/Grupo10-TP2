@@ -199,6 +199,41 @@ public class TestTP2_1 {
 		assertEquals("setup+test1+setup+test2+", result.toString());
 	}
 
+
+	@Test
+	public void testSetupEnSuiteEnSuite_1(){
+		// Arrange: un testCase dentro de un testSuite que esta dentro de otro testSuite
+		TP2.Test tCase = new TP2.Test("t"){ public void run(){ } };
+		
+		TP2.TestSuite tsInner = new TP2.TestSuite(){
+			protected void init(){ }
+			protected void setUp(){ }
+		};
+		
+		TP2.TestSuite tsOutter = new TP2.TestSuite(){ protected void init(){ } };
+		
+		tsInner.addTest( tCase );
+		tsOutter.addTest( tsInner );
+		
+		// Act
+		tsOutter.run();
+		
+		// TODO: Setup en testSuite de testSuite
+	}
+
+
+	@Test
+	public void testSetupEnSuiteEnSuite_2(){
+		// TODO: Setup en testSuite de testSuite
+	}
+
+
+	@Test
+	public void testSetupEnSuiteEnSuite_3(){
+		// TODO: Setup en testSuite de testSuite
+	}
+
+
 	@Test
 	public void testSetupEnSuiteEnSuite(){
 		final StringBuilder result = new StringBuilder("");
@@ -235,6 +270,7 @@ public class TestTP2_1 {
 		tSuiteA.run();
 		assertEquals("setupA+setupB+testB+setupC+testC+", result.toString());
 	}
+
 
 	@Test
 	public void testFixtureTest() {
