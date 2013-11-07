@@ -1,9 +1,0 @@
-[Fail] ReportFailCountIncreaseTest
-[Ok] ReportFailCountNotIncreaseTest
-[Ok] ResultOkStateTest
-[Ok] ResultFailStateTest
-[Ok] AssertIsTrueSuccessfullResultTest
-[Fail] AssertIsTrueNotSuccessfullResultTest
-[Fail] AssertEqualsSuccessfullResultTest
-[Ok] AssertEqualsNotSuccessfullResultTest
-Test Fail: 3 Tests Failed
