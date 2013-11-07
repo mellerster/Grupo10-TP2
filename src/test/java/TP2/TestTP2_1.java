@@ -38,7 +38,7 @@ public class TestTP2_1 {
 	@Test
 	public void TestSetUp() {
 		out = "";
-		TestSuite testSuiteA = new TestSuite("A"){
+		TestSuite testSuiteA = new TestSuite("A") {
 			@Override
 			protected void init() { }
 			@Override
@@ -46,7 +46,7 @@ public class TestTP2_1 {
 				out += "setUp --> ";
 			}
 		};
-		TP2.Test testB = new TP2.Test("B"){
+		TP2.Test testB = new TP2.Test("B") {
 			@Override
 			public void run() {
 				out += "testCase Run";
@@ -69,8 +69,7 @@ public class TestTP2_1 {
 		};
 		TestSuite testSuite = new TestSuite("testSuite") {
 			@Override
-			protected void init() {
-			}
+			protected void init() { }
 		};
 		testSuite.addTest(testFailure);
 		testSuite.init();
@@ -81,7 +80,7 @@ public class TestTP2_1 {
 	@Test
 	public void testCaseError() {
 		Reporter.clear();
-		TP2.Test testError = new TP2.Test("withError"){
+		TP2.Test testError = new TP2.Test("withError") {
 			@Override
 			public void run() {
 				throw new RuntimeException();
@@ -100,31 +99,31 @@ public class TestTP2_1 {
 	@Test
 	public void specialTests() {
 		Reporter.clear();
-		TP2.Test testMySpecialTestCase = new TP2.Test("my special test case"){
+		TP2.Test testMySpecialTestCase = new TP2.Test("my special test case") {
 			@Override
 			public void run() {
 				Assert.isTrue(true, "my special test case");
 			}
 		};
-		TP2.Test testMySpecialTestCase1 = new TP2.Test("my special test case 1"){
+		TP2.Test testMySpecialTestCase1 = new TP2.Test("my special test case 1") {
 			@Override
 			public void run() {
 				Assert.isTrue(true, "my special test case 1");
 			}
 		};
-		TP2.Test testMySpecial = new TP2.Test("my special"){
+		TP2.Test testMySpecial = new TP2.Test("my special") {
 			@Override
 			public void run() {
 				Assert.isTrue(true, "my special");
 			}
 		};
-		TP2.Test testATest = new TP2.Test("a test"){
+		TP2.Test testATest = new TP2.Test("a test") {
 			@Override
 			public void run() {
 				Assert.isTrue(true, "a test");
 			}
 		};
-		TP2.TestSuite testSuite = new TP2.TestSuite(){
+		TP2.TestSuite testSuite = new TP2.TestSuite() {
 			@Override
 			protected void init() {
 				setPattern(".*special.*");
@@ -142,31 +141,31 @@ public class TestTP2_1 {
 	@Test
 	public void UnexistentName() {
 		Reporter.clear();
-		TP2.Test testMySpecialTestCase = new TP2.Test("my special test case"){
+		TP2.Test testMySpecialTestCase = new TP2.Test("my special test case") {
 			@Override
 			public void run() {
 				Assert.isTrue(true, "my special test case");
 			}
 		};
-		TP2.Test testMySpecialTestCase1 = new TP2.Test("my special test case 1"){
+		TP2.Test testMySpecialTestCase1 = new TP2.Test("my special test case 1") {
 			@Override
 			public void run() {
 				Assert.isTrue(true, "my special test case 1");
 			}
 		};
-		TP2.Test testMySpecial = new TP2.Test("my special"){
+		TP2.Test testMySpecial = new TP2.Test("my special") {
 			@Override
 			public void run() {
 				Assert.isTrue(true, "my special");
 			}
 		};
-		TP2.Test testATest = new TP2.Test("a test"){
+		TP2.Test testATest = new TP2.Test("a test") {
 			@Override
 			public void run() {
 				Assert.isTrue(true, "a test");
 			}
 		};
-		TP2.TestSuite testSuite = new TP2.TestSuite(){
+		TP2.TestSuite testSuite = new TP2.TestSuite() {
 			@Override
 			protected void init() {
 				setPattern(".*no existe");
@@ -186,9 +185,9 @@ public class TestTP2_1 {
 		final StringBuilder result = new StringBuilder("");
 		TP2.TestSuite testSuite = new TP2.TestSuite(){
 			protected void init(){ }
-			protected void setUp(){ result.append( "setup+" ); }
-			public void test1(){ result.append( "test1+" ); }
-			public void test2(){ result.append( "test2+" ); }
+			protected void setUp(){ result.append("setup+"); }
+			public void test1(){ result.append("test1+"); }
+			public void test2(){ result.append("test2+"); }
 			@Override
 			public void run(){
 				super.addTest( new TP2.Test("test1"){ public void run(){ test1(); } });
@@ -266,31 +265,31 @@ public class TestTP2_1 {
 	@Test
 	public void testSetupEnSuiteEnSuite(){
 		final StringBuilder result = new StringBuilder("");
-		TP2.TestSuite testSuiteB = new TP2.TestSuite("B"){
+		TP2.TestSuite testSuiteB = new TP2.TestSuite("B") {
 			protected void init(){ }
-			protected void suiteSetUp(){ result.append( "setupB+" ); }
-			public void testB(){ result.append( "testB+" ); }
+			protected void suiteSetUp(){ result.append("setupB+"); }
+			public void testB(){ result.append("testB+"); }
 			@Override
 			public void run(){
-				super.addTest( new TP2.Test("testB"){ public void run(){ testB(); } });
+				super.addTest( new TP2.Test("testB") { public void run(){ testB(); } });
 				super.run();
 			}
 		};
-		TP2.TestSuite testSuiteC = new TP2.TestSuite("C"){
+		TP2.TestSuite testSuiteC = new TP2.TestSuite("C") {
 			protected void init(){ }
-			protected void suiteSetUp(){ result.append( "setupC+" ); }
-			public void testC(){ result.append( "testC+" ); }
+			protected void suiteSetUp(){ result.append("setupC+"); }
+			public void testC(){ result.append("testC+"); }
 			@Override
 			public void run(){
 				super.addTest( new TP2.Test("testC"){ public void run(){ testC(); } });
 				super.run();
 			}
 		};
-		TP2.TestSuite tSuiteA = new TP2.TestSuite("A"){
+		TP2.TestSuite tSuiteA = new TP2.TestSuite("A") {
 			protected void init(){ }
-			protected void suiteSetUp(){ result.append( "setupA+" ); }
+			protected void suiteSetUp(){ result.append("setupA+"); }
 			@Override
-			public void run(){
+			public void run() {
 				super.run();
 			}
 		};
@@ -302,32 +301,30 @@ public class TestTP2_1 {
 
 
 	@Test
-	public void testFixtureTest(){
+	public void testFixtureTest() {
 		Reporter.clear();
-		TestSuite testSuiteA = new TestSuite("A"){
+		TestSuite testSuiteA = new TestSuite("A") {
 			@Override
-			protected void init() {
-			}
-			public void suiteSetUp(){
+			protected void init() { }
+			public void suiteSetUp() {
 				String stringA = "setUpA";
 				getFixture().add("stringA", stringA);
 			}
-			public void setUp(){
+			public void setUp() {
 				String stringTestCase = "stringTestCase";
 				getFixture().add("stringTestCase", stringTestCase);
 			}
 		};
-		TestSuite testSuiteB = new TestSuite("B"){
+		TestSuite testSuiteB = new TestSuite("B") {
 			@Override
-			protected void init(){
-			}
-			public void suiteSetUp(){
+			protected void init() { }
+			public void suiteSetUp() {
 				String stringB = "setUpB";
 				getFixture().add("stringB", stringB);
 			}
 		};
 		testSuiteB.addTest(testSuiteA);
-		TP2.Test testCase = new TP2.Test("testCase"){
+		TP2.Test testCase = new TP2.Test("testCase") {
 			@Override
 			public void run() {
 				String stringA = (String)getFixture().get("stringA");
@@ -344,7 +341,7 @@ public class TestTP2_1 {
 	}
 
 	@Test(expected = AssertFailedException.class)
-	public void TestFailure(){
+	public void TestFailure() {
 		new TP2.Test("TestFailure") {
 			public void run() { }
 		};
@@ -375,8 +372,7 @@ public class TestTP2_1 {
 		};
 		TestSuite testSuite = new TestSuite("testSuite") {
 			@Override
-			protected void init() {
-			}
+			protected void init() { }
 		};
 		testSuite.addTest(testOk);
 		testSuite.addTest(testFail);
