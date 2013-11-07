@@ -183,12 +183,12 @@ public class TestTP2_1 {
 
 	@Test
 	public void testSetupTestSuite(){
-		final StringBuilder cadenaResultados = new StringBuilder("");
+		final StringBuilder result = new StringBuilder("");
 		TP2.TestSuite testSuite = new TP2.TestSuite(){
 			protected void init(){ }
-			protected void setUp(){ cadenaResultados.append( "setup+" ); }
-			public void test1(){ cadenaResultados.append( "test1+" ); }
-			public void test2(){ cadenaResultados.append( "test2+" ); }
+			protected void setUp(){ result.append( "setup+" ); }
+			public void test1(){ result.append( "test1+" ); }
+			public void test2(){ result.append( "test2+" ); }
 			@Override
 			public void run(){
 				super.addTest( new TP2.Test("test1"){ public void run(){ test1(); } });
@@ -197,7 +197,7 @@ public class TestTP2_1 {
 			}
 		};
 		testSuite.run();
-		assertEquals("setup+test1+setup+test2+", cadenaResultados.toString());
+		assertEquals("setup+test1+setup+test2+", result.toString());
 	}
 
 	@Test
