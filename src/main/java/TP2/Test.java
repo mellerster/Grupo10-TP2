@@ -1,5 +1,9 @@
 package TP2;
 
+/** Test
+ * Esta clase representa los test individuales que se desean probar.
+ **/
+
 public abstract class Test implements Testeable {
 	
 	private String name;
@@ -21,4 +25,5 @@ public abstract class Test implements Testeable {
 	public String toString() {
 		return getName();
 	}
+	
 }

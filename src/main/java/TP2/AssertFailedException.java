@@ -1,6 +1,10 @@
 package TP2;
 
-@SuppressWarnings("serial")
-public class AssertFailedException extends RuntimeException {
+/** AssertFailedException
+ * Exception que se lanza cuando no se devuelve el resultado
+ * que se esperaba en un assert.
+ **/
 
+@SuppressWarnings("serial")
+public class AssertFailedException extends RuntimeException { 
 }

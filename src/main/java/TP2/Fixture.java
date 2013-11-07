@@ -3,7 +3,13 @@ package TP2;
 import java.util.HashMap;
 import java.util.Map;
 
+/** Fixture
+ * Clase que representa la lista de objetos que son instanciados
+ * antes de correr los tests.
+ **/
+
 public class Fixture {
+	
 	private Map<String, Object> fixture;
 	
 	public Fixture(){

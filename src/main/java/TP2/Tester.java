@@ -31,8 +31,7 @@ public class Tester {
 		for (TestSuite t : testSuites) {
 			t.init();
 			t.run();
-		}
-		
+		}		
 		switch (reportMode) {
 			case Console:
 				ReportConsole.getReporter().saveResults();

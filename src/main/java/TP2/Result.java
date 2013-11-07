@@ -14,17 +14,19 @@ public class Result {
 	protected Result() {
 		state = ResultType.Error;
 		description = "";
+		packageName = "";
 	}
 
 	protected Result(ResultType state, String description) {
 		this.state = state;
 		this.description = description;
+		packageName = "";
 	}
 	
 	protected Result(ResultType state, String description, String packageName){
-		this.packageName = packageName;
 		this.state = state;
 		this.description = description;
+		this.packageName = packageName;
 	}
 
 	public ResultType getState() {
