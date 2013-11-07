@@ -204,4 +204,32 @@ public class TestTP2_1 {
 		assertEquals(0, Reporter.getReporter().getResults().size());
 	}
 	
+
+	@Test
+    public void testSetupTestSuite(){
+        // Arrange: un suite con setup y dos tests
+        final StringBuilder cadenaResultados = new StringBuilder("");
+
+		TP2.TestSuite tSuite = new TP2.TestSuite(){
+            protected void init(){ }
+            protected void setUp(){ cadenaResultados.append( "setup+" ); }
+            public void test_1(){ cadenaResultados.append( "test+" ); }
+            public void test_2(){ cadenaResultados.append( "test+" ); }
+            @Override
+            public void run(){
+                super.addTest( new TP2.Test("t_1"){ public void run(){ test_1(); } });
+                super.addTest( new TP2.Test("t_2"){ public void run(){ test_2(); } });
+                super.run();
+            }
+        };
+
+        // Act: Ejecutar el testSuite
+        tSuite.run();
+
+        // Assert
+        assertEquals("setup+test+setup+test+", cadenaResultados.toString());
+    }
+
 }
+
+
