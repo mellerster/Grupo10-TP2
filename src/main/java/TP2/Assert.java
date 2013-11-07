@@ -8,13 +8,13 @@ package TP2;
 public class Assert {
 
 	public static void isTrue(boolean toTest, String testName) {
-		if (!toTest){
+		if (!toTest) {
 			throw new AssertFailedException();
 		}
 	}
 
 	public static void AreEquals(Object object1, Object object2, String testName) {
-		if (!object1.equals(object2)){
+		if (!object1.equals(object2)) {
 			throw new AssertFailedException();
 		}
 	}

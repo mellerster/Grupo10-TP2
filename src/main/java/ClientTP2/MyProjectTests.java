@@ -11,7 +11,7 @@ public class MyProjectTests extends TestSuite {
 	}
 
 	protected void suiteSetUp() {
-		System.out.println("suiteSetUp: -->" + getPackageName());
+		System.out.println("suiteSetUp: --> " + getPackageName());
 		System.out.flush();
 
 		Fixture fixture = getFixture();
@@ -28,7 +28,7 @@ public class MyProjectTests extends TestSuite {
 
 	protected void suiteTearDown() {
 		System.out.println("counter is " + getFixture().get("counter"));
-		System.out.println("suiteTearDown: -->" + getPackageName());
+		System.out.println("suiteTearDown: --> " + getPackageName());
 		System.out.flush();
 	}
 

@@ -1,7 +1,5 @@
 package TP2;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,6 +8,7 @@ import java.util.List;
  **/
 
 public class Reporter {
+	
 	protected String name;
 	private List<Result> results;
 	private List<ResultFail> failures;
@@ -17,25 +16,25 @@ public class Reporter {
 	protected static Reporter reporter;
 
 	protected Reporter() {
+		name = "";
 		results = new LinkedList<Result>();
 		failures = new LinkedList<ResultFail>();
 		errors = new LinkedList<ResultError>();
-		name = "";
 	}
-	
-	protected void setName(String name){
-		this.name = name;
-	}
-	
-	public String getName(){
-		return name;
-	}
-	
 	
 	protected Reporter(Reporter report) {
+		name = "";
 		this.results = report.results;
 		this.failures = report.failures;
 		this.errors = report.errors;
+	}
+	
+	protected void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 	public void addResult(Result result) {
@@ -43,20 +42,12 @@ public class Reporter {
 		if (result.getState() == ResultType.Fail) {
 			failures.add((ResultFail) result);
 		}
-
 		if (result.getState() == ResultType.Error) {
 			errors.add((ResultError) result);
 		}
 	}
 
 	public List<Result> getResults() {
-		List<Result> resultsToReturn = results;
-		Collections.sort(resultsToReturn, new Comparator<Result>() {
-	         @Override
-	         public int compare(Result r1, Result r2) {
-	             return r1.getPackageName().compareTo(r2.getPackageName());
-	         }
-	     });
 		return results;
 	}
 
@@ -75,25 +66,34 @@ public class Reporter {
 			if (!packageName.equals(r.getPackageName())) {
 				packageName = r.getPackageName();
 				stringBuilder.append(System.getProperty("line.separator"));
-				stringBuilder.append(packageName + "\n");
-				stringBuilder.append("-------------------" + "\n");
+				stringBuilder.append(packageName);
+				stringBuilder.append(System.getProperty("line.separator"));
+				stringBuilder.append("-------------------");
+				stringBuilder.append(System.getProperty("line.separator"));
 			}
-				stringBuilder.append(r + "\n");
+				stringBuilder.append(r);
+				stringBuilder.append(System.getProperty("line.separator"));
 		}
 		int failures = reporter.getFailures().size();
 		int errors = reporter.getErrors().size();
 		String type = (failures == 0 && errors == 0 ? "success" : "failure");
 		System.out.flush();
 		stringBuilder.append(System.getProperty("line.separator"));
-		stringBuilder.append(type.concat(" Summary" + "\n"));
-		stringBuilder.append("=========================" + "\n");
-		stringBuilder.append("Run: " + reporter.getResults().size() + "\n");
-		stringBuilder.append("Errors: " + errors + "\n");
-		stringBuilder.append("Failures: " + failures + "\n");
+		stringBuilder.append(type.concat(" Summary"));
+		stringBuilder.append(System.getProperty("line.separator"));
+		stringBuilder.append("===============");
+		stringBuilder.append(System.getProperty("line.separator"));
+		stringBuilder.append("Run: " + reporter.getResults().size());
+		stringBuilder.append(System.getProperty("line.separator"));
+		stringBuilder.append("Errors: " + errors);
+		stringBuilder.append(System.getProperty("line.separator"));
+		stringBuilder.append("Failures: " + failures);
+		stringBuilder.append(System.getProperty("line.separator"));
 		return stringBuilder.toString();
 	}
 
-	public void saveResults() { }
+	public void saveResults() {
+	}
 
 	public static Reporter getReporter() {
 		if (reporter == null) {
@@ -102,7 +102,7 @@ public class Reporter {
 		return reporter;
 	}
 	
-	public static void clear(){
+	public static void clear() {
 		reporter = new Reporter();
 	}
 	
