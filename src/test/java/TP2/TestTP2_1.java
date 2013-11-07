@@ -40,28 +40,25 @@ public class TestTP2_1 {
 	}
 
 
-	int number = 0;
-	boolean passed;
+	String out;
 
 	@Test
 	public void TestSetUp(){
-		passed = false;
+		out = "";
 		
 		TestSuite testeable = new TestSuite("A"){
 			@Override
 			protected void init(){ }
 			@Override
 			protected void setUp(){
-				number = 5;
+				out += "setUp --> ";
 			}
 		};
 		
 		TP2.Test test = new TP2.Test("B"){
 			@Override
 			public void run() {
-				if(number == 5){
-					passed = true;
-				}
+				out += "testCase Run";
 			}
 		};
 		
@@ -70,7 +67,7 @@ public class TestTP2_1 {
 		testeable.init();
 		testeable.run();
 		
-		org.junit.Assert.assertTrue(passed);
+		org.junit.Assert.assertEquals("setUp --> testCase Run", out);
 	}
 
 
