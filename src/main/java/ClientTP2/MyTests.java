@@ -1,7 +1,10 @@
 package ClientTP2;
 
+import java.io.ObjectInputStream.GetField;
+
 import TP2.Assert;
 import TP2.AssertFailedException;
+import TP2.Fixture;
 import TP2.Reporter;
 import TP2.Result;
 import TP2.ResultError;
@@ -96,9 +99,19 @@ public class MyTests extends TestSuite {
 						.wasSuccessfull(),
 				"AssertEqualsNotSuccessfullResultTest");
 	}
-
 	protected void suiteSetUp() {
-		//Reporter.clear();
+		System.out.println("suiteSetUp: -->" + getPackageName());
+		System.out.flush();
+	}
+	
+	protected void setUp(){
+		System.out.println("setUp: --> " + getPackageName());
+		System.out.flush();
+	}
+	
+	protected void suiteTearDown(){
+		System.out.println("suiteTearDown: -->" + getPackageName());
+		System.out.flush();
 	}
 	
 	@Override

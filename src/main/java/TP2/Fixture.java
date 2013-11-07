@@ -1,9 +1,14 @@
 package TP2;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Fixture {
 	private Map<String, Object> fixture;
+	
+	public Fixture(){
+		fixture = new HashMap<String, Object>();
+	}
 	
 	public void add(String name, Object object){
 		fixture.put(name, object);

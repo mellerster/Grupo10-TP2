@@ -61,10 +61,8 @@ public abstract class TestSuite implements Testeable {
 		suiteSetUp();
 		Reporter reporter = Reporter.getReporter();
 		for (TestSuite t : testSuites) {
-			t.suiteSetUp();
 			t.init();
 			t.run();
-			t.suiteTearDown();
 		}
 		for (Test t : tests) {
 			setUp();
@@ -87,6 +85,9 @@ public abstract class TestSuite implements Testeable {
 		this.fixture.addFixture(fixture);
 	}
 	
+	public Fixture getFixture(){
+		return this.fixture;
+	}
 	private boolean isTestInPattern(Testeable t) {
 		return true; // TODO 
 	}
