@@ -202,31 +202,30 @@ public class TestTP2_1 {
 
 	@Test
 	public void testSetupEnSuiteEnSuite(){
-		/*
-		final StringBuilder cadenaResultados = new StringBuilder("");
-		TP2.TestSuite testSuiteB = new TP2.TestSuite(){
+		final StringBuilder result = new StringBuilder("");
+		TP2.TestSuite testSuiteB = new TP2.TestSuite("B"){
 			protected void init(){ }
-			protected void setUp(){ cadenaResultados.append( "setupB+" ); }
-			public void testB(){ cadenaResultados.append( "testB+" ); }
+			protected void suiteSetUp(){ result.append( "setupB+" ); }
+			public void testB(){ result.append( "testB+" ); }
 			@Override
 			public void run(){
 				super.addTest( new TP2.Test("testB"){ public void run(){ testB(); } });
 				super.run();
 			}
 		};
-		TP2.TestSuite testSuiteC = new TP2.TestSuite(){
+		TP2.TestSuite testSuiteC = new TP2.TestSuite("C"){
 			protected void init(){ }
-			protected void setUp(){ cadenaResultados.append( "setupC+" ); }
-			public void testC(){ cadenaResultados.append( "testC+" ); }
+			protected void suiteSetUp(){ result.append( "setupC+" ); }
+			public void testC(){ result.append( "testC+" ); }
 			@Override
 			public void run(){
 				super.addTest( new TP2.Test("testC"){ public void run(){ testC(); } });
 				super.run();
 			}
 		};
-		TP2.TestSuite tSuiteA = new TP2.TestSuite(){
+		TP2.TestSuite tSuiteA = new TP2.TestSuite("A"){
 			protected void init(){ }
-			protected void setUp(){ cadenaResultados.append( "setupA+" ); }
+			protected void suiteSetUp(){ result.append( "setupA+" ); }
 			@Override
 			public void run(){
 				super.run();
@@ -235,8 +234,7 @@ public class TestTP2_1 {
 		tSuiteA.addTest(testSuiteB);
 		tSuiteA.addTest(testSuiteC);
 		tSuiteA.run();
-		assertEquals("setupA+setupB+testB+setupC+testC+", cadenaResultados.toString());
-		*/
+		assertEquals("setupA+setupB+testB+setupC+testC+", result.toString());
 	}
 
 	@Test
