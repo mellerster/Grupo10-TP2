@@ -32,17 +32,20 @@ public class Tester {
 			t.init();
 			t.run();
 		}
+		
 		switch (reportMode) {
-		case Console:
-			ReportConsole.getReporter().saveResults();
-			break;
-		case TextFile:
-			ReportText.getReporter().saveResults();
-			break;
-		case AllAvailable:
-			ReportConsole.getReporter().saveResults();
-			ReportText.getReporter().saveResults();
-			break;
+			case Console:
+				ReportConsole.getReporter().saveResults();
+				break;
+				
+			case TextFile:
+				ReportText.getReporter().saveResults();
+				break;
+				
+			case AllAvailable:
+				ReportConsole.getReporter().saveResults();
+				ReportText.getReporter().saveResults();
+				break;
 		}
 	}
 

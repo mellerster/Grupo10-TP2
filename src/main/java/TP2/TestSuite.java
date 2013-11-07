@@ -37,7 +37,7 @@ public abstract class TestSuite implements Testeable {
 
 	public void setName(String name) {
 		this.name = name;
-		if(getPackageName() == ""){
+		if (getPackageName() == ""){
 			setPackageName(name);;
 		}
 	}
@@ -64,6 +64,7 @@ public abstract class TestSuite implements Testeable {
 			t.addFixture(getFixture());
 			t.run();
 		}
+
 		for (Test t : tests) {
 			setUp();
 			try {
@@ -76,6 +77,7 @@ public abstract class TestSuite implements Testeable {
 			} catch (Exception e) {
 				reporter.addResult(new ResultError(t.getName(),getPackageName()));
 			}
+
 			tearDown();
 		}
 		suiteTearDown();
@@ -88,21 +90,18 @@ public abstract class TestSuite implements Testeable {
 	public Fixture getFixture(){
 		return this.fixture;
 	}
+
 	private boolean isTestInPattern(Testeable t) {
 		return t.getName().matches(getPattern());
 	}
 
-	protected void setUp() {
-	}
+	protected void setUp() { }
 
-	protected void tearDown() {
-	}
+	protected void tearDown() { }
 
-	protected void suiteSetUp() {
-	}
+	protected void suiteSetUp() { }
 
-	protected void suiteTearDown() {
-	}
+	protected void suiteTearDown() { }
 
 	public String toString() {
 		return getName();
@@ -129,11 +128,12 @@ public abstract class TestSuite implements Testeable {
 	
 	public void setPackageName(String packageName){
 		String dot = "";
-		if(this.packageName != ""){
+		if (this.packageName != ""){
 			dot = ".";
 		}
 		this.packageName = packageName + dot + this.packageName; 
 	}
+
 	public String getPackageName(){
 		return packageName;
 	}

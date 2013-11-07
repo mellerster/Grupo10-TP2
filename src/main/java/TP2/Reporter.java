@@ -43,6 +43,7 @@ public class Reporter {
 		if (result.getState() == ResultType.Fail) {
 			failures.add((ResultFail) result);
 		}
+
 		if (result.getState() == ResultType.Error) {
 			errors.add((ResultError) result);
 		}
@@ -92,9 +93,7 @@ public class Reporter {
 		return stringBuilder.toString();
 	}
 
-	public void saveResults() {
-		
-	}
+	public void saveResults() { }
 
 	public static Reporter getReporter() {
 		if (reporter == null) {

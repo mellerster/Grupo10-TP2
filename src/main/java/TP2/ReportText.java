@@ -14,8 +14,7 @@ public class ReportText extends Reporter {
 
 	private static ReportText report;
 
-	private ReportText() {
-	}
+	private ReportText() { }
 
 	private ReportText(Reporter report) {
 		super(report);
