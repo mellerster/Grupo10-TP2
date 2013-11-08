@@ -10,23 +10,38 @@ public class Result {
 	private ResultType state;
 	private String description;
 	private String packageName;
+	private double time;
 	
 	protected Result() {
 		state = ResultType.Error;
 		description = "";
 		packageName = "";
+		time = 0;
 	}
 
 	protected Result(ResultType state, String description) {
 		this.state = state;
 		this.description = description;
 		packageName = "";
+		time = 0;
 	}
 	
 	protected Result(ResultType state, String description, String packageName){
 		this.state = state;
 		this.description = description;
 		this.packageName = packageName;
+		time = 0;
+	}
+	
+	protected Result(ResultType state, String description, String packageName, double time){
+		this.state = state;
+		this.description = description;
+		this.packageName = packageName;
+		this.time = time;
+	}
+	
+	public double getTime(){
+		return time;
 	}
 
 	public ResultType getState() {

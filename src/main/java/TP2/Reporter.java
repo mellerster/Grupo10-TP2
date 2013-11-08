@@ -65,7 +65,7 @@ public class Reporter {
 				appendLine(stringBuilder, packageName);
 				appendLine(stringBuilder, "-------------------");
 			}
-			appendLine(stringBuilder, r.toString());
+			appendLine(stringBuilder, r.toString() + " (" + r.getTime() + "s)");
 		}
 		int failures = reporter.getFailures().size();
 		int errors = reporter.getErrors().size();

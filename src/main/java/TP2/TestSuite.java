@@ -1,5 +1,6 @@
 package TP2;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -67,20 +68,29 @@ public abstract class TestSuite implements Testeable {
 		}
 		for (Test t : tests) {
 			setUp();
+			Date before = new Date();
 			try {
 				if (isTestInPattern(t)) {
 					t.setFixture(getFixture());
+					//before = new Date();
 					t.run();
-					reporter.addResult(new ResultOk(t.getName(),getPackageName()));
+					reporter.addResult(new ResultOk(t.getName(),getPackageName(), CalculateTimeInSeconds(before)));
 				}
 			} catch (AssertFailedException e) {
-				reporter.addResult(new ResultFail(t.getName(),getPackageName()));
+				reporter.addResult(new ResultFail(t.getName(),getPackageName(),CalculateTimeInSeconds(before)));
 			} catch (Exception e) {
-				reporter.addResult(new ResultError(t.getName(),getPackageName()));
+				reporter.addResult(new ResultError(t.getName(),getPackageName(),CalculateTimeInSeconds(before)));
 			}
 			tearDown();
 		}
 		suiteTearDown();
+	}
+
+	private double CalculateTimeInSeconds(Date before) {
+		Date after = new Date();		
+		double time = after.getTime() - before.getTime();
+		double timeInSeconds = time / 1000;
+		return timeInSeconds;
 	}
 
 	public void addFixture(Fixture fixture) {

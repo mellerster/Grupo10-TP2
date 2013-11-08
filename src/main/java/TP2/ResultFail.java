@@ -18,4 +18,8 @@ public class ResultFail extends Result {
 	public ResultFail(String description, String packageName){
 		super(ResultType.Fail,"[Fail] " + description, packageName);
 	}
+	
+	public ResultFail(String description, String packageName, double time){
+		super(ResultType.Fail,"[Fail] " + description, packageName, time);
+	}
 }

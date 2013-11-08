@@ -19,4 +19,7 @@ public class ResultOk extends Result {
 		super(ResultType.Ok,"[Ok] " + description, packageName);
 	}
 
+	public ResultOk(String description, String packageName, double time){
+		super(ResultType.Ok,"[Ok] " + description, packageName,time);
+	}
 }
