@@ -28,6 +28,7 @@ public class Tester {
 	}
 
 	public void execute() {
+		Reporter.setMode(reportMode);
 		for (TestSuite t : testSuites) {
 			t.init();
 			t.run();
@@ -38,11 +39,6 @@ public class Tester {
 				break;
 				
 			case TextFile:
-				ReportText.getReporter().saveResults();
-				break;
-				
-			case AllAvailable:
-				ReportConsole.getReporter().saveResults();
 				ReportText.getReporter().saveResults();
 				break;
 		}

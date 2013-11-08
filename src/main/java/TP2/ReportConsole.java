@@ -11,7 +11,7 @@ public class ReportConsole extends Reporter {
 
 	private static ReportConsole report;
 
-	private ReportConsole() {
+	ReportConsole() {
 	}
 
 	private ReportConsole(Reporter report) {
@@ -20,6 +20,11 @@ public class ReportConsole extends Reporter {
 
 	public void saveResults() {
 		System.out.print(getStringResults());
+		System.out.flush();
+	}
+	
+	public void saveResult(String result){
+		System.out.println(result);
 		System.out.flush();
 	}
 

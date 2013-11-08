@@ -13,7 +13,7 @@ public class ReportText extends Reporter {
 
 	private static ReportText report;
 
-	private ReportText() {
+	ReportText() {
 	}
 
 	private ReportText(Reporter report) {
@@ -25,13 +25,28 @@ public class ReportText extends Reporter {
 		try {
 			String fileName = "Report.txt";
 			String path = fileName;
-			outFile = new FileWriter(fileName);
+			outFile = new FileWriter(fileName,true);
 			PrintWriter out = new PrintWriter(outFile);
 			out.print(getStringResults());
 			out.flush();
 			out.close();
 			System.out.println("");
 			System.out.println("Report saved at path: " + path);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void saveResult(String result){
+		FileWriter outFile;
+		try {
+			String fileName = "Report.txt";
+			outFile = new FileWriter(fileName,true);
+			PrintWriter out = new PrintWriter(outFile);
+			out.print(result);
+			out.print("\n");
+			out.flush();
+			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

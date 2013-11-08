@@ -14,6 +14,11 @@ public class Reporter {
 	private List<ResultFail> failures;
 	private List<ResultError> errors;
 	protected static Reporter reporter;
+	protected static ReportMode mode;
+	
+	public static void setMode(ReportMode aMode){
+		mode = aMode;
+	}
 
 	protected Reporter() {
 		results = new LinkedList<Result>();
@@ -36,6 +41,8 @@ public class Reporter {
 		if (result.getState() == ResultType.Error) {
 			errors.add((ResultError) result);
 		}
+		//System.out.println(result.toString() + "(" + result.getTime() + "s)");
+		Reporter.getReporter().saveResult(result.toString() + "(" + result.getTime() + "s)");
 	}
 
 	public List<Result> getResults() {
@@ -78,13 +85,26 @@ public class Reporter {
 		appendLine(stringBuilder, "Failures: " + failures);
 		return stringBuilder.toString();
 	}
+	
+	protected void saveResult(String result){
+	}
 
 	public void saveResults() {
 	}
 
+	public static ReportMode getMode(){
+		return mode;
+	}
 	public static Reporter getReporter() {
 		if (reporter == null) {
-			reporter = new Reporter();
+			switch(Reporter.getMode()){
+				case Console:
+					reporter = new ReportConsole();
+				case TextFile:
+					reporter = new ReportText();
+			default:
+				break;
+			}
 		}
 		return reporter;
 	}
