@@ -12,8 +12,8 @@ import TP2.TestSuite;
 import TP2.Test;
 
 public class MyTests extends TestSuite {
-	
-	public MyTests(){
+
+	public MyTests() {
 		super();
 	}
 
@@ -21,7 +21,8 @@ public class MyTests extends TestSuite {
 		int beforeResults = Reporter.getReporter().getFailures().size();
 		try {
 			Assert.isTrue(false, "ReportFailCountIncreaseTest");
-		} catch (AssertFailedException e) { }
+		} catch (AssertFailedException e) {
+		}
 
 		Assert.AreEquals(beforeResults + 1, Reporter.getReporter()
 				.getFailures().size(), "ReportFailCountIncreaseTest");
@@ -36,24 +37,30 @@ public class MyTests extends TestSuite {
 
 	public void ResultOkStateTest() {
 		Result result = new ResultOk("ResultOkStateTest");
-		Assert.AreEquals(true, result.getState() == ResultType.Ok, "ResultOkStateTest");
+		Assert.AreEquals(true, result.getState() == ResultType.Ok,
+				"ResultOkStateTest");
 	}
 
 	public void ResultFailStateTest() {
 		Result result = new ResultFail("ResultFailStateTest");
-		Assert.AreEquals(true, result.getState() == ResultType.Fail, "ResultFailStateTest");
+		Assert.AreEquals(true, result.getState() == ResultType.Fail,
+				"ResultFailStateTest");
 	}
-	
-	public void ResultErrorStateTest(){
+
+	public void ResultErrorStateTest() {
 		Result result = new ResultError("ResultErrorStateTest");
-		Assert.AreEquals(true, result.getState() == ResultType.Error, "ResultFailStateTest");
+		Assert.AreEquals(true, result.getState() == ResultType.Error,
+				"ResultFailStateTest");
 	}
 
 	public void AssertIsTrueSuccessfullResultTest() {
 		try {
 			Assert.isTrue(true, "AssertIsTrueSuccessfullResultTest");
-		} catch (AssertFailedException e) { }
-		Assert.AreEquals( true, Reporter.getReporter().getResults()
+		} catch (AssertFailedException e) {
+		}
+		Assert.AreEquals(
+				true,
+				Reporter.getReporter().getResults()
 						.get(Reporter.getReporter().getResults().size() - 1)
 						.wasSuccessfull(), "AssertIsTrueSuccessfullResultTest");
 	}
@@ -61,8 +68,11 @@ public class MyTests extends TestSuite {
 	public void AssertIsTrueNotSuccessfullResultTest() {
 		try {
 			Assert.isTrue(false, "AssertIsTrueNotSuccessfullResultTest");
-		} catch (AssertFailedException e) { }
-		Assert.AreEquals( false, Reporter.getReporter().getResults()
+		} catch (AssertFailedException e) {
+		}
+		Assert.AreEquals(
+				false,
+				Reporter.getReporter().getResults()
 						.get(Reporter.getReporter().getResults().size() - 1)
 						.wasSuccessfull(),
 				"AssertIsTrueNotSuccessfullResultTest");
@@ -71,40 +81,33 @@ public class MyTests extends TestSuite {
 	public void AssertEqualsSuccessfullResultTest() {
 		try {
 			Assert.AreEquals(1, 1, "AssertEqualsSuccessfullResultTest");
-		} catch (AssertFailedException e) { }
-		Assert.AreEquals( true, Reporter.getReporter().getResults()
+		} catch (AssertFailedException e) {
+		}
+		Assert.AreEquals(
+				true,
+				Reporter.getReporter().getResults()
 						.get(Reporter.getReporter().getResults().size() - 1)
 						.wasSuccessfull(), "AssertEqualsSuccessfullResultTest");
 	}
 
 	public void AssertEqualsNotSuccessfullResultTest() {
-		try{
-            Assert.AreEquals(1, 2, "AssertEqualsNotSuccessfullResultTest");
-		} catch (AssertFailedException e){ }
-		Assert.AreEquals( false, Reporter.getReporter().getResults()
+		try {
+			Assert.AreEquals(1, 2, "AssertEqualsNotSuccessfullResultTest");
+		} catch (AssertFailedException e) {
+		}
+		Assert.AreEquals(
+				false,
+				Reporter.getReporter().getResults()
 						.get(Reporter.getReporter().getResults().size() - 1)
-						.wasSuccessfull(), "AssertEqualsNotSuccessfullResultTest");
-	}
-
-
-	protected void suiteSetUp() {
-		Integer counter = (Integer)getFixture().get("counter");
-		counter = new Integer(10);
-		getFixture().add("counter", counter);
-	}
-
-	protected void setUp() {
-		Integer counter = (Integer)getFixture().get("counter");
-		counter++;
-		getFixture().add("counter", counter);
-		System.out.println(counter.toString());
+						.wasSuccessfull(),
+				"AssertEqualsNotSuccessfullResultTest");
 	}
 
 	@Override
 	public void run() {
-		
+
 		setName("MyTests");
-		
+
 		super.addTest(new Test("ReportFailCountIncreaseTest") {
 			public void run() {
 				ReportFailCountIncreaseTest();

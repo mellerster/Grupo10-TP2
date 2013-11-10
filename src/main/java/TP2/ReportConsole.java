@@ -9,30 +9,16 @@ package TP2;
 
 public class ReportConsole extends Reporter {
 
-	private static ReportConsole report;
-
-	ReportConsole() {
+	public ReportConsole() {
 	}
 
-	private ReportConsole(Reporter report) {
+	public ReportConsole(Reporter report) {
 		super(report);
 	}
 
-	public void saveResults() {
-		System.out.print(getStringResults());
-		System.out.flush();
-	}
-	
 	public void saveResult(String result){
 		System.out.println(result);
 		System.out.flush();
-	}
-
-	public static ReportConsole getReporter() {
-		if (report == null) {
-			report = new ReportConsole(Reporter.getReporter());
-		}
-		return report;
 	}
 
 }

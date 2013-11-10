@@ -8,22 +8,20 @@ import java.util.List;
  * reporte.
  **/
 
-public class Reporter {
+public abstract class Reporter {
 
 	private List<Result> results;
 	private List<ResultFail> failures;
 	private List<ResultError> errors;
 	protected static Reporter reporter;
-	protected static ReportMode mode;
-	
-	public static void setMode(ReportMode aMode){
-		mode = aMode;
-	}
+	protected static ReportMode mode = ReportMode.Console;
+	private String packageName = "";
 
 	protected Reporter() {
 		results = new LinkedList<Result>();
 		failures = new LinkedList<ResultFail>();
 		errors = new LinkedList<ResultError>();
+		mode = ReportMode.Console;
 	}
 
 	protected Reporter(Reporter report) {
@@ -32,8 +30,13 @@ public class Reporter {
 		this.errors = report.errors;
 	}
 
-
 	public void addResult(Result result) {
+		if (!packageName.equals(result.getPackageName())) {
+			packageName = result.getPackageName();
+			saveResult("");
+			saveResult(packageName);
+			saveResult("-------------------");
+		}
 		results.add(result);
 		if (result.getState() == ResultType.Fail) {
 			failures.add((ResultFail) result);
@@ -41,8 +44,8 @@ public class Reporter {
 		if (result.getState() == ResultType.Error) {
 			errors.add((ResultError) result);
 		}
-		//System.out.println(result.toString() + "(" + result.getTime() + "s)");
-		Reporter.getReporter().saveResult(result.toString() + "(" + result.getTime() + "s)");
+		Reporter.getReporter().saveResult(
+				result.toString() + "(" + result.getTime() + "s)");
 	}
 
 	public List<Result> getResults() {
@@ -62,18 +65,10 @@ public class Reporter {
 		builder.append(System.getProperty("line.separator"));
 	}
 
-	protected String getStringResults() {
+	protected abstract void saveResult(String result);
+
+	public void saveResults() {
 		StringBuilder stringBuilder = new StringBuilder();
-		String packageName = "";
-		for (Result r : reporter.getResults()) {
-			if (!packageName.equals(r.getPackageName())) {
-				packageName = r.getPackageName();
-				appendLine(stringBuilder, "");
-				appendLine(stringBuilder, packageName);
-				appendLine(stringBuilder, "-------------------");
-			}
-			appendLine(stringBuilder, r.toString() + " (" + r.getTime() + "s)");
-		}
 		int failures = reporter.getFailures().size();
 		int errors = reporter.getErrors().size();
 		String type = (failures == 0 && errors == 0 ? "success" : "failure");
@@ -83,25 +78,27 @@ public class Reporter {
 		appendLine(stringBuilder, "Run: " + reporter.getResults().size());
 		appendLine(stringBuilder, "Errors: " + errors);
 		appendLine(stringBuilder, "Failures: " + failures);
-		return stringBuilder.toString();
-	}
-	
-	protected void saveResult(String result){
+		Reporter.getReporter().saveResult(stringBuilder.toString());
+
 	}
 
-	public void saveResults() {
+	public static void setMode(ReportMode aMode) {
+		mode = aMode;
 	}
 
-	public static ReportMode getMode(){
+	public static ReportMode getMode() {
 		return mode;
 	}
+
 	public static Reporter getReporter() {
 		if (reporter == null) {
-			switch(Reporter.getMode()){
-				case Console:
-					reporter = new ReportConsole();
-				case TextFile:
-					reporter = new ReportText();
+			switch (Reporter.getMode()) {
+			case Console:
+				reporter = new ReportConsole();
+				break;
+			case TextFile:
+				reporter = new ReportText();
+				break;
 			default:
 				break;
 			}
@@ -110,7 +107,7 @@ public class Reporter {
 	}
 
 	public static void clear() {
-		reporter = new Reporter();
+		reporter = null;
 	}
 
 }
