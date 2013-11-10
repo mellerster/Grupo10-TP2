@@ -23,6 +23,7 @@ public class ReportXML extends Reporter {
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
 			doc = docBuilder.newDocument();
+			doc.setXmlStandalone(true);
 			root = doc.createElement("testsuites");
 
 			doc.appendChild(root);
@@ -93,7 +94,9 @@ public class ReportXML extends Reporter {
 			 * while programming
 			 */
 			StreamResult resultConsole = new StreamResult(System.out);
-
+			
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 			transformer.transform(source, resultConsole);
 			transformer.transform(source, resultFile);
 		} catch (TransformerConfigurationException e) {
