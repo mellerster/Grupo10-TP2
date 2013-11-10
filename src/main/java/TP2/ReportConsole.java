@@ -12,10 +12,6 @@ public class ReportConsole extends Reporter {
 	public ReportConsole() {
 	}
 
-	public ReportConsole(Reporter report) {
-		super(report);
-	}
-
 	public void saveResult(String result){
 		System.out.println(result);
 		System.out.flush();

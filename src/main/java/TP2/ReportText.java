@@ -14,11 +14,7 @@ public class ReportText extends Reporter {
 
 	public ReportText() {
 	}
-
-	public ReportText(Reporter report) {
-		super(report);
-	}
-
+	
 	public void saveResults() {
 		super.saveResults();
 		String fileName = "Report.txt";

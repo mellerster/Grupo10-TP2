@@ -10,24 +10,18 @@ import java.util.List;
 
 public abstract class Reporter {
 
-	private List<Result> results;
-	private List<ResultFail> failures;
-	private List<ResultError> errors;
+	protected List<Result> results;
+	protected List<ResultFail> failures;
+	protected List<ResultError> errors;
 	protected static Reporter reporter;
 	protected static ReportMode mode = ReportMode.Console;
-	private String packageName = "";
+	protected String packageName = "";
 
 	protected Reporter() {
 		results = new LinkedList<Result>();
 		failures = new LinkedList<ResultFail>();
 		errors = new LinkedList<ResultError>();
 		mode = ReportMode.Console;
-	}
-
-	protected Reporter(Reporter report) {
-		this.results = report.results;
-		this.failures = report.failures;
-		this.errors = report.errors;
 	}
 
 	public void addResult(Result result) {
@@ -98,6 +92,9 @@ public abstract class Reporter {
 				break;
 			case TextFile:
 				reporter = new ReportText();
+				break;
+			case XML:
+				reporter = new ReportXML();
 				break;
 			default:
 				break;
