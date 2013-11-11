@@ -7,4 +7,10 @@ package TP2;
 
 @SuppressWarnings("serial")
 public class AssertFailedException extends RuntimeException { 
+	public AssertFailedException(){
+		super();
+	}
+	public AssertFailedException(String message){
+		super(message);
+	}
 }

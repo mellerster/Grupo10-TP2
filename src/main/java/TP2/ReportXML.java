@@ -14,7 +14,6 @@ public class ReportXML extends Reporter {
 	private Document doc;
 	private Element root;
 	private Element actualTestSuite;
-	private int testCount;
 
 	public ReportXML() {
 		try {
@@ -42,11 +41,11 @@ public class ReportXML extends Reporter {
 			packageName = result.getPackageName();
 			actualTestSuite.setAttribute("package", packageName);
 			setTestSuiteName(result);
-			testCount = 0;
 		}
 		Element testCase = doc.createElement("testcase");
 		actualTestSuite.appendChild(testCase);
 		testCase.setAttribute("name", result.getDescription());
+		testCase.setAttribute("time", Double.toString(result.getTime()));
 		results.add(result);
 		setStatus(testCase, "Passed");
 		setTestCount();
@@ -62,6 +61,11 @@ public class ReportXML extends Reporter {
 	}
 
 	private void setTestCount() {
+		String tests = actualTestSuite.getAttribute("tests");
+		if (tests == "") {
+			tests = "0";
+		}
+		int testCount = Integer.parseInt(tests);
 		testCount++;
 		actualTestSuite.setAttribute("tests", Integer.toString(testCount));
 	}
@@ -94,9 +98,10 @@ public class ReportXML extends Reporter {
 			 * while programming
 			 */
 			StreamResult resultConsole = new StreamResult(System.out);
-			
+
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+			transformer.setOutputProperty(
+					"{http://xml.apache.org/xslt}indent-amount", "2");
 			transformer.transform(source, resultConsole);
 			transformer.transform(source, resultFile);
 		} catch (TransformerConfigurationException e) {
