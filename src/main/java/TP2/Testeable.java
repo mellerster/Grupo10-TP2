@@ -10,5 +10,5 @@ public interface Testeable {
 	public void run();
 	public void setName(String name);
 	public String getName();
-	
+	public void setTag(String tag);
 }
