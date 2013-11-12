@@ -12,15 +12,21 @@ package TP2;
 
 public class ResultError extends Result {
 
-	public ResultError(String description) {
-		super(ResultType.Error, "[Error] " + description);
+	public ResultError(String testName) {
+		super(ResultType.Error, "[Error] " + testName);
 	}
 
-	public ResultError(String description, String packageName) {
-		super(ResultType.Error, "[Error] " + description, packageName);
+	public ResultError(String testName, String packageName) {
+		super(ResultType.Error, "[Error] " + testName, packageName);
 	}
 
-	public ResultError(String description, String packageName, double time) {
-		super(ResultType.Error, "[Error] " + description, packageName, time);
+	public ResultError(String testName, String packageName, double time) {
+		super(ResultType.Error, "[Error] " + testName, packageName, time);
+	}
+
+	public ResultError(String testName, String packageName, double time,
+			String description) {
+		super(ResultType.Error, "[Error] " + testName, packageName, time,
+				description);
 	}
 }

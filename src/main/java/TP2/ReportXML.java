@@ -44,9 +44,10 @@ public class ReportXML extends Reporter {
 		}
 		Element testCase = doc.createElement("testcase");
 		actualTestSuite.appendChild(testCase);
-		testCase.setAttribute("name", result.getDescription());
+		testCase.setAttribute("name", result.getTestName());
 		testCase.setAttribute("time", Double.toString(result.getTime()));
 		results.add(result);
+		setDescription(testCase, result);
 		setStatus(testCase, "Passed");
 		setTestCount();
 		if (result.getState() == ResultType.Fail) {
@@ -58,6 +59,12 @@ public class ReportXML extends Reporter {
 			errors.add((ResultError) result);
 		}
 
+	}
+
+	private void setDescription(Element testCase, Result result) {
+		if (!result.getDescription().equals("")) {
+			testCase.setAttribute("description", result.getDescription());
+		}
 	}
 
 	private void setTestCount() {

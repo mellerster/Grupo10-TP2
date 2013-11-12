@@ -8,6 +8,7 @@ package TP2;
 public class Result {
 	
 	private ResultType state;
+	private String testName;
 	private String description;
 	private String packageName;
 	private double time;
@@ -17,25 +18,37 @@ public class Result {
 		description = "";
 		packageName = "";
 		time = 0;
+		testName = "";
 	}
 
-	protected Result(ResultType state, String description) {
+	protected Result(ResultType state, String testName) {
 		this.state = state;
-		this.description = description;
+		this.testName = testName;
 		packageName = "";
 		time = 0;
+		description = "";
 	}
 	
-	protected Result(ResultType state, String description, String packageName){
+	protected Result(ResultType state, String testName, String packageName){
 		this.state = state;
-		this.description = description;
+		this.testName = testName;
 		this.packageName = packageName;
 		time = 0;
+		description = "";
 	}
 	
-	protected Result(ResultType state, String description, String packageName, double time){
+	protected Result(ResultType state, String testName, String packageName, double time){
 		this.state = state;
+		this.testName = testName;
+		this.packageName = packageName;
+		this.time = time;
+		description = "";
+	}
+	
+	protected Result(ResultType state, String testName, String packageName, double time, String description){
 		this.description = description;
+		this.state = state;
+		this.testName = testName;
 		this.packageName = packageName;
 		this.time = time;
 	}
@@ -52,6 +65,10 @@ public class Result {
 		return description;
 	}
 	
+	public String getTestName(){
+		return testName;
+	}
+	
 	public String getPackageName(){
 		return packageName;
 	}
@@ -62,7 +79,7 @@ public class Result {
 	
 	@Override
 	public String toString(){
-		return getDescription();
+		return getTestName();
 	}
 	
 }
