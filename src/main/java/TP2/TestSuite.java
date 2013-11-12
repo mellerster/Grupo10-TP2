@@ -78,7 +78,9 @@ public abstract class TestSuite implements Testeable {
 			} catch (AssertFailedException e) {
 				reporter.addResult(new ResultFail(t.getName(),getPackageName(),CalculateTimeInSeconds(before),e.getMessage()));
 			} catch (Exception e) {
-				reporter.addResult(new ResultError(t.getName(),getPackageName(),CalculateTimeInSeconds(before),e.getMessage()));
+				reporter.addResult(new ResultError(t.getName(),
+						getPackageName(), CalculateTimeInSeconds(before), e
+								.getMessage()));
 			}
 			tearDown();
 		}

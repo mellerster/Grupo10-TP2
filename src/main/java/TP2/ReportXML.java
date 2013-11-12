@@ -41,6 +41,7 @@ public class ReportXML extends Reporter {
 			packageName = result.getPackageName();
 			actualTestSuite.setAttribute("package", packageName);
 			setTestSuiteName(result);
+			setCounters();
 		}
 		Element testCase = doc.createElement("testcase");
 		actualTestSuite.appendChild(testCase);
@@ -51,14 +52,35 @@ public class ReportXML extends Reporter {
 		setStatus(testCase, "Passed");
 		setTestCount();
 		if (result.getState() == ResultType.Fail) {
-			setStatus(testCase, "Failed");
+			setFailureStatus(testCase);
 			failures.add((ResultFail) result);
 		}
 		if (result.getState() == ResultType.Error) {
-			setStatus(testCase, "With Error");
+			setErrorStatus(testCase);
 			errors.add((ResultError) result);
 		}
 
+	}
+
+	private void setCounters() {
+		actualTestSuite.setAttribute("failures", "0");
+		actualTestSuite.setAttribute("errors", "0");
+		actualTestSuite.setAttribute("skipped", "0");
+		actualTestSuite.setAttribute("tests", "0");
+	}
+
+	private void setFailureStatus(Element testCase) {
+		setStatus(testCase, "Failed");
+		int count = Integer.parseInt(actualTestSuite.getAttribute("failures"));
+		count++;
+		actualTestSuite.setAttribute("failures", Integer.toString(count));
+	}
+
+	private void setErrorStatus(Element testCase) {
+		setStatus(testCase, "With Error");
+		int count = Integer.parseInt(actualTestSuite.getAttribute("errors"));
+		count++;
+		actualTestSuite.setAttribute("errors", Integer.toString(count));
 	}
 
 	private void setDescription(Element testCase, Result result) {
@@ -69,9 +91,6 @@ public class ReportXML extends Reporter {
 
 	private void setTestCount() {
 		String tests = actualTestSuite.getAttribute("tests");
-		if (tests == "") {
-			tests = "0";
-		}
 		int testCount = Integer.parseInt(tests);
 		testCount++;
 		actualTestSuite.setAttribute("tests", Integer.toString(testCount));
