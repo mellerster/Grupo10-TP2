@@ -129,7 +129,7 @@ public class TestsTP2_2 {
 		TS1.run();
 		assertEquals(4, Reporter.getReporter().getResults().size());
 	}
-/*	
+	
 	@Test
 	public void testCaseWitTagAndWithoutAName() {
 		Reporter.clear();
@@ -137,7 +137,7 @@ public class TestsTP2_2 {
 
 			@Override
 			protected void init() {
-				setPattern(".*no correr.*"); //TODO como es el negado?
+				setPattern("^((?!no correr).)*$");
 			}
 
 		};
@@ -188,7 +188,7 @@ public class TestsTP2_2 {
 		TS1.run();
 		assertEquals(2, Reporter.getReporter().getResults().size());
 	}
-*/
+
 	@Test
 	public void testCaseWitTagsAndWithAName() {
 		Reporter.clear();
