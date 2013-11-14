@@ -39,7 +39,7 @@ public abstract class Reporter {
 			errors.add((ResultError) result);
 		}
 		Reporter.getReporter().saveResult(
-				result.toString() + "(" + result.getTime() + "s)");
+			result.toString() + "(" + result.getTime() + "s)");
 	}
 
 	public List<Result> getResults() {
@@ -73,7 +73,6 @@ public abstract class Reporter {
 		appendLine(stringBuilder, "Errors: " + errors);
 		appendLine(stringBuilder, "Failures: " + failures);
 		Reporter.getReporter().saveResult(stringBuilder.toString());
-
 	}
 
 	public static void setMode(ReportMode aMode) {

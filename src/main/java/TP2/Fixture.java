@@ -12,19 +12,19 @@ public class Fixture {
 	
 	private Map<String, Object> fixture;
 	
-	public Fixture(){
+	public Fixture() {
 		fixture = new HashMap<String, Object>();
 	}
 	
-	public void add(String name, Object object){
+	public void add(String name, Object object) {
 		fixture.put(name, object);
 	}
 	
-	public Object get(String name){
+	public Object get(String name) {
 		return fixture.get(name);
 	}
 	
-	public void addFixture(Fixture other){
+	public void addFixture(Fixture other) {
 		this.fixture.putAll(other.fixture);
 	}
 	

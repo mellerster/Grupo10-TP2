@@ -12,7 +12,7 @@ public class ReportConsole extends Reporter {
 	public ReportConsole() {
 	}
 
-	public void saveResult(String result){
+	public void saveResult(String result) {
 		System.out.println(result);
 		System.out.flush();
 	}

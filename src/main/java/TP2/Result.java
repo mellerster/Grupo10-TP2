@@ -15,10 +15,10 @@ public class Result {
 	
 	protected Result() {
 		state = ResultType.Error;
+		testName = "";
 		description = "";
 		packageName = "";
 		time = 0;
-		testName = "";
 	}
 
 	protected Result(ResultType state, String testName) {
@@ -29,31 +29,31 @@ public class Result {
 		description = "";
 	}
 	
-	protected Result(ResultType state, String testName, String packageName){
+	protected Result(ResultType state, String testName, String packageName) {
 		this.state = state;
 		this.testName = testName;
+		description = "";
 		this.packageName = packageName;
 		time = 0;
-		description = "";
 	}
 	
-	protected Result(ResultType state, String testName, String packageName, double time){
+	protected Result(ResultType state, String testName, String packageName, double time) {
 		this.state = state;
 		this.testName = testName;
+		description = "";
 		this.packageName = packageName;
 		this.time = time;
-		description = "";
 	}
 	
-	protected Result(ResultType state, String testName, String packageName, double time, String description){
+	protected Result(ResultType state, String testName, String packageName, double time, String description) {
+		this.state = state;
+		this.testName = testName;
 		this.description = description;
-		this.state = state;
-		this.testName = testName;
 		this.packageName = packageName;
 		this.time = time;
 	}
 	
-	public double getTime(){
+	public double getTime() {
 		return time;
 	}
 
@@ -65,20 +65,20 @@ public class Result {
 		return description;
 	}
 	
-	public String getTestName(){
+	public String getTestName() {
 		return testName;
 	}
 	
-	public String getPackageName(){
+	public String getPackageName() {
 		return packageName;
 	}
 
-	public boolean wasSuccessfull(){
+	public boolean wasSuccessfull() {
 		return (state == ResultType.Ok);
 	}
 	
 	@Override
-	public String toString(){
+	public String toString() {
 		return getTestName();
 	}
 	

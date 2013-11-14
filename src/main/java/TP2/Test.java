@@ -3,8 +3,8 @@ package TP2;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Test Esta clase representa los test individuales que se desean probar.
+/** Test 
+ * Esta clase representa los test individuales que se desean probar.
  **/
 
 public abstract class Test implements Testeable {
@@ -58,4 +58,5 @@ public abstract class Test implements Testeable {
 		Test test = (Test) obj;
 		return test.getName().equals(name);
 	}
+	
 }

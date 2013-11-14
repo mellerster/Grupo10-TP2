@@ -2,8 +2,8 @@ package TP2;
 
 import java.io.*;
 
-/**
- * ReportText Esta clase tiene como responsabilidad, enviar los resultados de
+/** ReportText 
+ * Esta clase tiene como responsabilidad, enviar los resultados de
  * las pruebas a un archivo de texto y un comentario final si pasaron o no todos
  * los tests. Herencia: Esta clase hereda de Reporter ya que es un reporte, pero
  * en este caso al grabarse (metodo saveResults()) lo graba en un archivo de
@@ -38,4 +38,5 @@ public class ReportText extends Reporter {
 			e.printStackTrace();
 		}
 	}
+	
 }

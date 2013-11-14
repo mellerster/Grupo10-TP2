@@ -1,7 +1,7 @@
 package TP2;
 
-/**
- * ResultError Esta clase se utiliza para separar los casos de resultados
+/** ResultError 
+ * Esta clase se utiliza para separar los casos de resultados
  * exitosos de los fallidos y con errores. En este caso es con errores y lo que
  * hace es heredar de Result y cuando se crea le dice que es un resultado con
  * errores y a la descripcion se le agrega el texto para que cuando se grabe el
@@ -29,4 +29,5 @@ public class ResultError extends Result {
 		super(ResultType.Error, "[Error] " + testName, packageName, time,
 				description);
 	}
+	
 }

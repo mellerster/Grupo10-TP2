@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * TestSuite Es lo que implementa el cliente para ejecutar una serie de tests.
+/** TestSuite 
+ * Es lo que implementa el cliente para ejecutar una serie de tests.
  * Debe hacer que sus tests sean ejecutados dentro del metodo init().
  **/
 
@@ -25,8 +25,8 @@ public abstract class TestSuite implements Testeable {
 		packageName = "";
 		pattern = ".*";
 		fixture = new Fixture();
-		tests = new LinkedList<Test>();
 		testSuites = new LinkedList<TestSuite>();
+		tests = new LinkedList<Test>();
 		tagsToSearch = new LinkedList<String>();
 		testsToSkip = new LinkedList<String>();
 	}
@@ -189,4 +189,5 @@ public abstract class TestSuite implements Testeable {
 			testsToSkip.add(testName);
 		}
 	}
+	
 }

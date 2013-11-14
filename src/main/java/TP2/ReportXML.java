@@ -10,14 +10,15 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-/**
- * ReportXML Esta clase tiene como responsabilidad, enviar los resultados de las
+/** ReportXML 
+ * Esta clase tiene como responsabilidad, enviar los resultados de las
  * pruebas a un archivo XML. Herencia: Esta clase hereda de Reporter ya que es
  * un reporte, pero en este caso sobreescribe el metodo addResult para poder
  * agregar el resultado al XML
  **/
 
 public class ReportXML extends Reporter {
+	
 	private Document doc;
 	private Element root;
 	private Element actualTestSuite;
@@ -40,12 +41,10 @@ public class ReportXML extends Reporter {
 
 	@Override
 	public void addResult(Result result) {
-
 		if (!packageName.equals(result.getPackageName())) {
 			testSuiteChange(result);
 		}
 		addTestCase(result);
-
 	}
 
 	private void addTestCase(Result result) {
@@ -124,8 +123,7 @@ public class ReportXML extends Reporter {
 
 	@Override
 	public void saveResults() {
-		TransformerFactory transformerFactory = TransformerFactory
-				.newInstance();
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer;
 		try {
 			transformer = transformerFactory.newTransformer();
@@ -145,4 +143,5 @@ public class ReportXML extends Reporter {
 	private void setStatus(Element testCase, String status) {
 		testCase.setAttribute("status", status);
 	}
+	
 }

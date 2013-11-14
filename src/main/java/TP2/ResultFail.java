@@ -1,7 +1,7 @@
 package TP2;
 
-/**
- * ResultFail Esta clase se utiliza para separar los casos de resultados
+/** ResultFail 
+ * Esta clase se utiliza para separar los casos de resultados
  * exitosos de los fallidos y con errores. En este caso es el fallido y lo que
  * hace es heredar de Result y cuando se crea le dice que es un resultado
  * fallido y a la descripcion se le agrega el texto para que cuando se grabe el
@@ -28,4 +28,5 @@ public class ResultFail extends Result {
 			String description) {
 		super(ResultType.Fail, "[Fail] " + testName, packageName, time,description);
 	}
+	
 }
