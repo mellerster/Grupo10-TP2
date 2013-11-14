@@ -1,6 +1,10 @@
 package TP2;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -312,4 +316,80 @@ public class TestsTP2_2 {
 		TS1.run();
 		assertEquals(1, Reporter.getReporter().getResults().size());
 	}
+	
+	@Test
+	public void testTimeOfTests() {
+		Reporter.clear();
+		TestSuite TS1 = new TestSuite("TS") {
+
+			@Override
+			protected void init() {
+			}
+
+		};
+		TP2.Test T1 = new TP2.Test("T1") {
+
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				Assert.isTrue(true, "T1");
+			}
+
+		};
+		TP2.Test T2 = new TP2.Test("T2") {
+
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				Assert.isTrue(true, "T2");
+			}
+
+		};
+		TP2.Test T3 = new TP2.Test("T3") {
+
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				Assert.isTrue(true, "T3");
+			}
+
+		};
+
+		TS1.addTest(T1);
+		TS1.addTest(T2);
+		TS1.addTest(T3);
+		TS1.init();
+		TS1.run();
+		
+		Map<String, Object> times;
+		times = new HashMap<String, Object>();
+		for (Result r : Reporter.getReporter().getResults()) {	
+			times.put(r.getTestName(), r.getTime());
+		}
+		
+		double time1 = (Double) times.get("[Ok] T1");
+		double time2 = (Double) times.get("[Ok] T2");
+		double time3 = (Double) times.get("[Ok] T3");
+		
+		double timeDiff = 0.005;
+		assertTrue((time1 < 1+timeDiff) && (time1 > 1-timeDiff));
+		assertTrue((time2 < 2+timeDiff) && (time2 > 2-timeDiff));
+		assertTrue((time3 < 3+timeDiff) && (time3 > 3-timeDiff));
+
+		double timeTotal = time1 + time2 + time3;
+		assertTrue((timeTotal < 6+timeDiff) && (timeTotal > 6-timeDiff));
+	}
+	
 }
