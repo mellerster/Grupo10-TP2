@@ -335,4 +335,9 @@ public class TestsTP2_2 {
 		assertTrue((timeTotal < 6+timeDiff) && (timeTotal > 6-timeDiff));
 	}
 	
+	@Test
+	public void testProgressiveReport() {
+		// TODO Cesar
+	}
+	
 }
