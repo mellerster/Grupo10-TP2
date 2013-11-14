@@ -14,14 +14,12 @@ public abstract class Reporter {
 	protected List<ResultFail> failures;
 	protected List<ResultError> errors;
 	protected static Reporter reporter;
-	protected static ReportMode mode = ReportMode.Console;
 	protected String packageName = "";
 
 	protected Reporter() {
 		results = new LinkedList<Result>();
 		failures = new LinkedList<ResultFail>();
 		errors = new LinkedList<ResultError>();
-		mode = ReportMode.Console;
 	}
 
 	public void addResult(Result result) {
@@ -75,6 +73,20 @@ public abstract class Reporter {
 		Reporter.getReporter().saveResult(stringBuilder.toString());
 	}
 
+
+	public static void setReportType(Reporter rep){
+		reporter = rep;
+	}
+
+
+	public static Reporter getReporter() {
+		if (reporter == null){
+			return new ReportConsole();
+		} else {
+			return reporter;
+		}
+	}
+/*
 	public static void setMode(ReportMode aMode) {
 		mode = aMode;
 	}
@@ -101,7 +113,7 @@ public abstract class Reporter {
 		}
 		return reporter;
 	}
-
+*/
 	public static void clear() {
 		reporter = null;
 	}

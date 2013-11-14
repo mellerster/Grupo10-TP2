@@ -11,16 +11,14 @@ import java.util.List;
 public class Tester {
 
 	private List<TestSuite> testSuites;
-	private ReportMode reportMode;
 
 	public Tester() {
 		testSuites = new LinkedList<TestSuite>();
-		reportMode = ReportMode.Console;
 	}
 	
-	public Tester(ReportMode reportMode) {
+	public Tester(Reporter reportType) {
 		testSuites = new LinkedList<TestSuite>();
-		this.reportMode = reportMode;
+		Reporter.setReportType(reportType);
 	}
 
 	public void addTests(TestSuite testeable) {
@@ -28,7 +26,6 @@ public class Tester {
 	}
 
 	public void execute() {
-		Reporter.setMode(reportMode);
 		for (TestSuite t : testSuites) {
 			t.init();
 			t.run();
