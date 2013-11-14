@@ -335,9 +335,54 @@ public class TestsTP2_2 {
 		assertTrue((timeTotal < 6+timeDiff) && (timeTotal > 6-timeDiff));
 	}
 	
+
 	@Test
 	public void testProgressiveReport() {
-		// TODO Cesar
+		// Arrange
+		Reporter.clear();
+		Reporter.setReportType( new MockedReport() );
+
+		Test t1 = new Test("T1"){
+			@override
+			public void run(){
+				Thread.sleep(1000);
+				Assert.isTrue(true, "T3");
+			}
+		}
+
+		Test t2 = new Test("T2"){
+			@override
+			public void run(){
+				Thread.sleep(1000);
+				Assert.isTrue(true, "T3");
+			}
+		}
+
+		Test t3 = new Test("T3"){
+			@override
+			public void run(){
+				Thread.sleep(1000);
+				Assert.isTrue(true, "T3");
+			}
+		}
+
+		TestSuite TS = new TestSuite("TS") { protected void init() { } }
+
+		TS.addTest( T1 );
+		TS.addTest( T2 );
+		TS.addTest( T3 );
+
+		// Act
+		TS.init();
+		TS.run();
+
+		// Assert: Se chequea que los tiempos vayan aumentando
+		MockedReport mock = Reporter.getReporter();
+		double tiempoAnterior = 0.0;
+		for (double tiempoActual : mock.getTimes()){
+			assertTrue( tiempoAnterior < tiempoActual );
+			tiempoAnterior = tiempoActual;
+		}
 	}
 	
 }
