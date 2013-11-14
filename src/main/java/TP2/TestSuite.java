@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-/** TestSuite 
- * Es lo que implementa el cliente para ejecutar una serie de tests.
+/**
+ * TestSuite Es lo que implementa el cliente para ejecutar una serie de tests.
  * Debe hacer que sus tests sean ejecutados dentro del metodo init().
  **/
 
@@ -67,17 +67,20 @@ public abstract class TestSuite implements Testeable {
 		suiteSetUp();
 		Reporter reporter = Reporter.getReporter();
 		for (TestSuite t : testSuites) {
-			t.init();
-			t.addFixture(getFixture());
-			t.setPattern(getPattern());
-			t.copySkippedTests(this);
-			t.run();
+			if (isTestInPattern(t)) {
+				t.init();
+				t.addFixture(getFixture());
+				t.setPattern(getPattern());
+				t.copySkippedTests(this);
+				t.run();
+			}
 		}
 		for (Test t : tests) {
 			setUp();
 			Date before = new Date();
 			try {
-				if (!(testsToSkip.contains(t.getName())) && isTestInPattern(t) && testWithAnyTag(t)) {
+				if (!(testsToSkip.contains(t.getName())) && isTestInPattern(t)
+						&& testWithAnyTag(t)) {
 					t.setFixture(getFixture());
 					t.run();
 					reporter.addResult(new ResultOk(t.getName(),
@@ -179,15 +182,15 @@ public abstract class TestSuite implements Testeable {
 	public void setTag(String tag) {
 		tagsToSearch.add(tag);
 	}
-	
-	public void skipTest(String testName){
+
+	public void skipTest(String testName) {
 		testsToSkip.add(testName);
 	}
-	
-	protected void copySkippedTests(TestSuite parent){
-		for(String testName : parent.testsToSkip){
+
+	protected void copySkippedTests(TestSuite parent) {
+		for (String testName : parent.testsToSkip) {
 			testsToSkip.add(testName);
 		}
 	}
-	
+
 }
