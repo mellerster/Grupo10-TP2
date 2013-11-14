@@ -10,6 +10,13 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * ReportXML Esta clase tiene como responsabilidad, enviar los resultados de las
+ * pruebas a un archivo XML. Herencia: Esta clase hereda de Reporter ya que es
+ * un reporte, pero en este caso sobreescribe el metodo addResult para poder
+ * agregar el resultado al XML
+ **/
+
 public class ReportXML extends Reporter {
 	private Document doc;
 	private Element root;
@@ -27,7 +34,6 @@ public class ReportXML extends Reporter {
 
 			doc.appendChild(root);
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -36,13 +42,13 @@ public class ReportXML extends Reporter {
 	public void addResult(Result result) {
 
 		if (!packageName.equals(result.getPackageName())) {
-			actualTestSuite = doc.createElement("testsuite");
-			root.appendChild(actualTestSuite);
-			packageName = result.getPackageName();
-			actualTestSuite.setAttribute("package", packageName);
-			setTestSuiteName(result);
-			setCounters();
+			testSuiteChange(result);
 		}
+		addTestCase(result);
+
+	}
+
+	private void addTestCase(Result result) {
 		Element testCase = doc.createElement("testcase");
 		actualTestSuite.appendChild(testCase);
 		testCase.setAttribute("name", result.getTestName());
@@ -59,7 +65,15 @@ public class ReportXML extends Reporter {
 			setErrorStatus(testCase);
 			errors.add((ResultError) result);
 		}
+	}
 
+	private void testSuiteChange(Result result) {
+		actualTestSuite = doc.createElement("testsuite");
+		root.appendChild(actualTestSuite);
+		packageName = result.getPackageName();
+		actualTestSuite.setAttribute("package", packageName);
+		setTestSuiteName(result);
+		setCounters();
 	}
 
 	private void setCounters() {
@@ -117,23 +131,13 @@ public class ReportXML extends Reporter {
 			transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
 			StreamResult resultFile = new StreamResult(new File("Report.xml"));
-
-			/*
-			 * TODO: Take out the resultConsole is just for seeing the xml file
-			 * while programming
-			 */
-			StreamResult resultConsole = new StreamResult(System.out);
-
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			transformer.setOutputProperty(
 					"{http://xml.apache.org/xslt}indent-amount", "2");
-			transformer.transform(source, resultConsole);
 			transformer.transform(source, resultFile);
 		} catch (TransformerConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
