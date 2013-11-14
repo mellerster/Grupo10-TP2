@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * TestSuite Es lo que implementa el cliente para ejecutar una serie de tests.
+/** TestSuite 
+ * Es lo que implementa el cliente para ejecutar una serie de tests.
  * Debe hacer que sus tests sean ejecutados dentro del metodo init().
  **/
 
