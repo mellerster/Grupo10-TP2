@@ -18,6 +18,7 @@ public abstract class TestSuite implements Testeable {
 	private List<TestSuite> testSuites;
 	private List<Test> tests;
 	private List<String> tagsToSearch;
+	protected List<String> testsToSkip;
 
 	public TestSuite() {
 		setName(name);
@@ -27,6 +28,7 @@ public abstract class TestSuite implements Testeable {
 		tests = new LinkedList<Test>();
 		testSuites = new LinkedList<TestSuite>();
 		tagsToSearch = new LinkedList<String>();
+		testsToSkip = new LinkedList<String>();
 	}
 
 	public TestSuite(String name) {
@@ -37,13 +39,13 @@ public abstract class TestSuite implements Testeable {
 		testSuites = new LinkedList<TestSuite>();
 		tests = new LinkedList<Test>();
 		tagsToSearch = new LinkedList<String>();
+		testsToSkip = new LinkedList<String>();
 	}
 
 	public void setName(String name) {
 		this.name = name;
 		if (getPackageName() == "") {
 			setPackageName(name);
-			;
 		}
 	}
 
@@ -68,13 +70,14 @@ public abstract class TestSuite implements Testeable {
 			t.init();
 			t.addFixture(getFixture());
 			t.setPattern(getPattern());
+			t.copySkippedTests(this);
 			t.run();
 		}
 		for (Test t : tests) {
 			setUp();
 			Date before = new Date();
 			try {
-				if (isTestInPattern(t) && testWithAnyTag(t)) {
+				if (!(testsToSkip.contains(t.getName())) && isTestInPattern(t) && testWithAnyTag(t)) {
 					t.setFixture(getFixture());
 					t.run();
 					reporter.addResult(new ResultOk(t.getName(),
@@ -175,5 +178,15 @@ public abstract class TestSuite implements Testeable {
 
 	public void setTag(String tag) {
 		tagsToSearch.add(tag);
+	}
+	
+	public void skipTest(String testName){
+		testsToSkip.add(testName);
+	}
+	
+	protected void copySkippedTests(TestSuite parent){
+		for(String testName : parent.testsToSkip){
+			testsToSkip.add(testName);
+		}
 	}
 }

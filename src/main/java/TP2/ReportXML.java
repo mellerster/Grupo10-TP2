@@ -65,7 +65,6 @@ public class ReportXML extends Reporter {
 	private void setCounters() {
 		actualTestSuite.setAttribute("failures", "0");
 		actualTestSuite.setAttribute("errors", "0");
-		actualTestSuite.setAttribute("skipped", "0");
 		actualTestSuite.setAttribute("tests", "0");
 	}
 
