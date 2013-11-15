@@ -18,7 +18,9 @@ public class MockedReport extends Reporter {
 	public void addResult(Result result) {
 		Double tiempo = result.getTime();
 		Double tiempoTotal = tiempo + ultimoTiempo;
+		
 		lTiempos.add( tiempoTotal );
+		ultimoTiempo = tiempoTotal;
 	}
 
 

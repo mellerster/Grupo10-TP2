@@ -325,13 +325,13 @@ public class TestsTP2_2 {
 		double time2 = (Double) times.get("[Ok] T2");
 		double time3 = (Double) times.get("[Ok] T3");
 		
-		double timeDiff = 0.005;
+		double timeDiff = 0.01;
 		assertTrue((time1 < 1+timeDiff) && (time1 > 1-timeDiff));
 		assertTrue((time2 < 2+timeDiff) && (time2 > 2-timeDiff));
 		assertTrue((time3 < 3+timeDiff) && (time3 > 3-timeDiff));
 
 		double timeTotal = time1 + time2 + time3;
-		assertTrue((timeTotal < 6+timeDiff) && (timeTotal > 6-timeDiff));
+		assertTrue((timeTotal < 6+3*timeDiff) && (timeTotal > 6-3*timeDiff));
 	}
 	
 
@@ -379,7 +379,7 @@ public class TestsTP2_2 {
 		MockedReport mock = (MockedReport) Reporter.getReporter();
 		double tiempoAnterior = 0.0;
 		for (double tiempoActual : mock.getTimes()){
-			assertTrue( tiempoAnterior < tiempoActual );
+			assertTrue(tiempoAnterior + " < " + tiempoActual, tiempoAnterior < tiempoActual );
 			tiempoAnterior = tiempoActual;
 		}
 	}
