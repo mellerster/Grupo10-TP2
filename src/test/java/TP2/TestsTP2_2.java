@@ -316,8 +316,7 @@ public class TestsTP2_2 {
 		TS1.init();
 		TS1.run();
 		
-		Map<String, Object> times;
-		times = new HashMap<String, Object>();
+		Map<String, Object> times = new HashMap<String, Object>();
 		for (Result r : Reporter.getReporter().getResults()) {	
 			times.put(r.getTestName(), r.getTime());
 		}

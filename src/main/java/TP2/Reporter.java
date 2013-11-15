@@ -81,10 +81,10 @@ public abstract class Reporter {
 
 	public static Reporter getReporter() {
 		if (reporter == null){
-			return new ReportConsole();
-		} else {
-			return reporter;
+			reporter = new ReportConsole();
 		}
+
+		return reporter;
 	}
 
 
