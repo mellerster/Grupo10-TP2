@@ -342,42 +342,42 @@ public class TestsTP2_2 {
 		Reporter.clear();
 		Reporter.setReportType( new MockedReport() );
 
-		Test t1 = new Test("T1"){
-			@override
+		TP2.Test t1 = new TP2.Test("T1"){
+			@Override
 			public void run(){
-				Thread.sleep(1000);
+				try { Thread.sleep(1000); } catch (InterruptedException ie) { }
 				Assert.isTrue(true, "T3");
 			}
-		}
+		};
 
-		Test t2 = new Test("T2"){
-			@override
+		TP2.Test t2 = new TP2.Test("T2"){
+			@Override
 			public void run(){
-				Thread.sleep(1000);
+				try { Thread.sleep(1000); } catch (InterruptedException ie) { }
 				Assert.isTrue(true, "T3");
 			}
-		}
+		};
 
-		Test t3 = new Test("T3"){
-			@override
+		TP2.Test t3 = new TP2.Test("T3"){
+			@Override
 			public void run(){
-				Thread.sleep(1000);
+				try { Thread.sleep(1000); } catch (InterruptedException ie) { }
 				Assert.isTrue(true, "T3");
 			}
-		}
+		};
 
-		TestSuite TS = new TestSuite("TS") { protected void init() { } }
+		TestSuite TS = new TestSuite("TS") { protected void init() { } };
 
-		TS.addTest( T1 );
-		TS.addTest( T2 );
-		TS.addTest( T3 );
+		TS.addTest( t1 );
+		TS.addTest( t2 );
+		TS.addTest( t3 );
 
 		// Act
 		TS.init();
 		TS.run();
 
 		// Assert: Se chequea que los tiempos vayan aumentando
-		MockedReport mock = Reporter.getReporter();
+		MockedReport mock = (MockedReport) Reporter.getReporter();
 		double tiempoAnterior = 0.0;
 		for (double tiempoActual : mock.getTimes()){
 			assertTrue( tiempoAnterior < tiempoActual );

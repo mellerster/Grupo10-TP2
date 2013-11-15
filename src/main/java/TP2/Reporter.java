@@ -86,34 +86,8 @@ public abstract class Reporter {
 			return reporter;
 		}
 	}
-/*
-	public static void setMode(ReportMode aMode) {
-		mode = aMode;
-	}
 
-	public static ReportMode getMode() {
-		return mode;
-	}
 
-	public static Reporter getReporter() {
-		if (reporter == null) {
-			switch (Reporter.getMode()) {
-			case Console:
-				reporter = new ReportConsole();
-				break;
-			case TextFile:
-				reporter = new ReportText();
-				break;
-			case XML:
-				reporter = new ReportXML();
-				break;
-			default:
-				break;
-			}
-		}
-		return reporter;
-	}
-*/
 	public static void clear() {
 		reporter = null;
 	}

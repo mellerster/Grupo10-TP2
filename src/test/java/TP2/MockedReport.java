@@ -1,31 +1,31 @@
 package TP2;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 
 public class MockedReport extends Reporter {
 
-	private double ultimoTiempo;
-	private LinkedList<double> lTiempos;
+	private Double ultimoTiempo;
+	private ArrayList<Double> lTiempos;
 
 	public MockedReport(){
 		ultimoTiempo = 0.0;
-		lTiempos = new LinkedList<double>();
+		lTiempos = new ArrayList<Double>();
 	}
 
 
-	@override
+	@Override
 	public void addResult(Result result) {
-		double tiempo = result.getTime();
-		double tiempoTotal = tiempo + ultimoTiempo;
+		Double tiempo = result.getTime();
+		Double tiempoTotal = tiempo + ultimoTiempo;
 		lTiempos.add( tiempoTotal );
 	}
 
 
 	public void saveResult(String result) { }
 
-	
-	public LinkedList<double> getTimes(){
+
+	public ArrayList<Double> getTimes(){
 		return lTiempos;
 	}
 }
