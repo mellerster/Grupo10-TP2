@@ -51,8 +51,12 @@ public class TestAnalyzer {
 	 * the Test or TestContainer
 	 */
 	protected Map<String, List<TestResult>> passed = new HashMap<String, List<TestResult>>();
-
+	
+	/**
+	 * Hold tests with bad performance.
+	 */
 	protected Map<String, List<TestResult>> timeLimitError = new HashMap<String, List<TestResult>>();
+	
 	/**
 	 * Hold all tests. It's never null, but can be empty.
 	 */
@@ -192,7 +196,14 @@ public class TestAnalyzer {
 			passed.put(currentTestName, passedList);
 		}
 	}
-
+	
+	/**
+	 * Adds a test with bad performance.
+	 * 
+	 * @param test
+	 *            The test to add the time limit.
+	 *            
+	 */
 	public void addTimeLimitError(final Test test, String message,
 			final long testTime, TestTimeLimitException testTimeLimitException) {
 		Validate.notNull(test, "The Test cannot be null.");
@@ -288,15 +299,30 @@ public class TestAnalyzer {
 	public Map<String, List<TestResult>> getPassed() {
 		return passed;
 	}
-
+	
+	/**
+	 * Returns the number of tests with errors.
+	 * 
+	 * @return The number of tests with errors.
+	 */
 	public int getTestWithErrors() {
 		return testWithErrors;
 	}
-
+	
+	/**
+	 * Returns the number of tests with fails.
+	 * 
+	 * @return The number of tests with fails.
+	 */
 	public int getTestWithFails() {
 		return testWithFails;
 	}
-	
+
+	/**
+	 * Returns the number of tests that have errors with time limit.
+	 * 
+	 * @return The number of tests that have errors with time limit.
+	 */
 	public int getTestWithTimeLimitErrors(){
 		return testWithTimeLimit;
 	}

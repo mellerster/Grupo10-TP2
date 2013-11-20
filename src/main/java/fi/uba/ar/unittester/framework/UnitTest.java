@@ -58,10 +58,20 @@ public abstract class UnitTest extends Test {
 	 */
 	public abstract void test(Map<String, Object> context);
 
+	/**
+	 * Defines the time to run the test.
+	 * 
+	 * @param timeToRun
+	 */
 	public void limitTo(long timeToRun) {
 		this.timeToRun = timeToRun;
 	}
-
+	
+	/**
+	 * Defines the test to be run.
+	 * 
+	 * @return The limit time to run the test.
+	 */
 	public long getLimitTime() {
 		return timeToRun;
 	}
