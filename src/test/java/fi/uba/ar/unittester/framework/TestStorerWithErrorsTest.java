@@ -17,7 +17,7 @@ public class TestStorerWithErrorsTest {
 	}
 
 	@Test
-	public void secondRun() {
+	public void secondRunCheckNew() {
 		TestRunner testRunner = new TestRunner(true);
 		testRunner.addTest(new ErrorTest());
 		testRunner.addTest(new FailTest());
@@ -25,6 +25,28 @@ public class TestStorerWithErrorsTest {
 		testRunner.addTest(new OneEqualsOneTest());
 		testRunner.execute();
 		assertEquals(testRunner.getAnalyzer().getPassed().size(), 1);
+	}
+	
+	@Test
+	public void secondRunCheckFailed() {
+		TestRunner testRunner = new TestRunner(true);
+		testRunner.addTest(new ErrorTest());
+		testRunner.addTest(new FailTest());
+		testRunner.addTest(new PerformanceTestSuccessful());
+		testRunner.addTest(new OneEqualsOneTest());
+		testRunner.execute();
+		assertEquals(testRunner.getAnalyzer().getFailures().size(), 1);
+	}
+	
+	@Test
+	public void secondRunCheckWithError() {
+		TestRunner testRunner = new TestRunner(true);
+		testRunner.addTest(new ErrorTest());
+		testRunner.addTest(new FailTest());
+		testRunner.addTest(new PerformanceTestSuccessful());
+		testRunner.addTest(new OneEqualsOneTest());
+		testRunner.execute();
+		assertEquals(testRunner.getAnalyzer().getErrors().size(), 1);
 	}
 	
 }
