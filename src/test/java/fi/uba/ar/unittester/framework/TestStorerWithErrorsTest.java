@@ -5,9 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import fi.uba.ar.unittester.framework.TestStorerFactory.StorerType;
-
-public class TestStorerTest {
+public class TestStorerWithErrorsTest {
+	
 	@Before
 	public void firstRun() {
 		TestRunner testRunner = new TestRunner(false);
@@ -27,4 +26,5 @@ public class TestStorerTest {
 		testRunner.execute();
 		assertEquals(testRunner.getAnalyzer().getPassed().size(), 1);
 	}
+	
 }
