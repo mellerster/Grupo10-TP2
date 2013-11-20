@@ -9,7 +9,7 @@ import java.util.Map;
  */
 
 public abstract class UnitTest extends Test {
-	long timeToRun;
+	long timeToRun = Long.MAX_VALUE;
 
 	/**
 	 * Runs test method and save the results in analyzer.
@@ -35,6 +35,8 @@ public abstract class UnitTest extends Test {
 						+ ", Time: " + totalTime);
 			}
 			analyzer.addPassed(this, "This test was succesfull", totalTime);
+			TestStorer testStorer = new TestStorerFactory().getStorer();
+			testStorer.store(this);
 		} catch (AssertionFailError e) {
 			endTime = System.nanoTime();
 			totalTime = endTime - startTime;
