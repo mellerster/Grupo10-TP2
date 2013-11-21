@@ -1,7 +1,6 @@
 package fi.uba.ar.unittester.framework;
 
 import java.util.Map;
-
 import org.junit.Before;
 
 public class PerformanceTestFailed extends UnitTest {
@@ -21,8 +20,6 @@ public class PerformanceTestFailed extends UnitTest {
         TestAnalyzer analyzer = runner.getAnalyzer();
         Assert.assertEquals(analyzer.getTestWithTimeLimitErrors(),1);
     }
-
-
 
     @Override
     public void test(Map<String, Object> context) {

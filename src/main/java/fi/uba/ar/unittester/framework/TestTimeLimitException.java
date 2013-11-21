@@ -2,6 +2,7 @@ package fi.uba.ar.unittester.framework;
 
 @SuppressWarnings("serial")
 public class TestTimeLimitException extends RuntimeException {
+	
 	public TestTimeLimitException(){
 		super();
 	}
@@ -9,4 +10,5 @@ public class TestTimeLimitException extends RuntimeException {
 	public TestTimeLimitException(String message){
 		super(message);
 	}
+	
 }

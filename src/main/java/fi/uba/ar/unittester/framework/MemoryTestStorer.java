@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MemoryTestStorer implements TestStorer {
+	
 	private static List<Test> tests;
 
 	public MemoryTestStorer() {

@@ -1,9 +1,7 @@
 package fi.uba.ar.unittester.framework;
 
 import static org.junit.Assert.assertEquals;
-
 import java.util.Map;
-
 import org.junit.Before;
 
 public class PerformanceTestSuccessful extends UnitTest {
@@ -28,4 +26,5 @@ public class PerformanceTestSuccessful extends UnitTest {
 	public void test(Map<String, Object> context) {
 		Assert.assertTrue(true);
 	}
+	
 }
