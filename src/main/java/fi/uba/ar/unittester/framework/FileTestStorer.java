@@ -98,6 +98,9 @@ public class FileTestStorer implements TestStorer {
 		return testsNames;
 	}
 
+	/**
+	 * Empties the file, recreating it
+	 */
 	public void reset() {
 		BufferedWriter file;
 		try {

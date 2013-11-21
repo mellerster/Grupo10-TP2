@@ -6,9 +6,7 @@ package fi.uba.ar.unittester.framework;
  */
 
 public class TestStorerFactory {
-	/**
-	 * 
-	 */
+	
 	private static TestStorer testStorer;
 
 	/**
