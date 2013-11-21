@@ -9,6 +9,9 @@ import java.util.Map;
  */
 
 public abstract class UnitTest extends Test {
+	/**
+	 * Time to run the test with successful performance
+	 */
 	long timeToRun = Long.MAX_VALUE;
 
 	/**

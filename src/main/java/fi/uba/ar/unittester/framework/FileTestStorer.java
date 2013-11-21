@@ -9,8 +9,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A Test Storer that stores the tests in a Simple TextFile
+ * 
+ */
 public class FileTestStorer implements TestStorer {
 
+	/**
+	 * Checks if the test was already in the file, if not adds it.
+	 */
 	public void store(Test test) {
 		if (testNotInFile(test)) {
 			BufferedWriter file;
@@ -26,6 +33,12 @@ public class FileTestStorer implements TestStorer {
 		}
 	}
 
+	/**
+	 * Check if the Test is in the file
+	 * 
+	 * @param test
+	 * @return true if it is in the file, false if not
+	 */
 	private boolean testNotInFile(Test test) {
 		BufferedReader file = getBufferedFileReader();
 		if (file == null) {
@@ -46,6 +59,11 @@ public class FileTestStorer implements TestStorer {
 		return true;
 	}
 
+	/**
+	 * Gets the File Reader
+	 * 
+	 * @return File Reader
+	 */
 	private BufferedReader getBufferedFileReader() {
 		BufferedReader file = null;
 		try {
@@ -57,6 +75,9 @@ public class FileTestStorer implements TestStorer {
 		return file;
 	}
 
+	/**
+	 * Gets the test names from the file and returns it in the list
+	 */
 	public List<String> getStored() {
 		BufferedReader file;
 		List<String> testsNames = new ArrayList<String>();
@@ -86,5 +107,5 @@ public class FileTestStorer implements TestStorer {
 			e.printStackTrace();
 		}
 	}
-	
+
 }
